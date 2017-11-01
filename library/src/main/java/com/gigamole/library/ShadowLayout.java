@@ -22,12 +22,17 @@ import android.graphics.Bitmap;
 import android.graphics.BlurMaskFilter;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
 import android.support.annotation.FloatRange;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.widget.FrameLayout;
+
+import java.util.logging.Logger;
 
 /**
  * Created by GIGAMOLE on 13.04.2016.
@@ -71,6 +76,10 @@ public class ShadowLayout extends FrameLayout {
     private float mShadowAngle;
     private float mShadowDx;
     private float mShadowDy;
+    private float mOffsetDy;
+    private float mOffsetDx;
+    private float mZoomDy;
+    private boolean mDrawCenter = true;
 
     public ShadowLayout(final Context context) {
         this(context, null);
@@ -109,6 +118,12 @@ public class ShadowLayout extends FrameLayout {
                     typedArray.getColor(
                             R.styleable.ShadowLayout_sl_shadow_color, DEFAULT_SHADOW_COLOR
                     )
+            );
+            mOffsetDx=typedArray.getDimensionPixelSize(
+                    R.styleable.ShadowLayout_sl_shadow_offsetdx, Integer.MAX_VALUE
+            );
+            mOffsetDy=typedArray.getDimensionPixelSize(
+                    R.styleable.ShadowLayout_sl_shadow_offsetdy, Integer.MAX_VALUE
             );
         } finally {
             typedArray.recycle();
@@ -166,6 +181,15 @@ public class ShadowLayout extends FrameLayout {
         resetShadow();
     }
 
+    public void setRadius(final float shadowRadius) {
+        mShadowRadius = Math.max(MIN_RADIUS, shadowRadius);
+        if (isInEditMode()) return;
+        // Set blur filter to paint
+        mPaint.setMaskFilter(new BlurMaskFilter(mShadowRadius, BlurMaskFilter.Blur.NORMAL));
+        mInvalidateShadow = true;
+        postInvalidate();
+    }
+
     public int getShadowColor() {
         return mShadowColor;
     }
@@ -194,7 +218,7 @@ public class ShadowLayout extends FrameLayout {
         // Set padding for shadow bitmap
         final int padding = (int) (mShadowDistance + mShadowRadius);
         setPadding(padding, padding, padding, padding);
-        requestLayout();
+        mInvalidateShadow = true;
     }
 
     private int adjustShadowAlpha(final boolean adjust) {
@@ -211,8 +235,11 @@ public class ShadowLayout extends FrameLayout {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
         // Set ShadowLayout bounds
+//        mBounds.set(
+//                0, 0, MeasureSpec.getSize(widthMeasureSpec), MeasureSpec.getSize(heightMeasureSpec)
+//        );
         mBounds.set(
-                0, 0, MeasureSpec.getSize(widthMeasureSpec), MeasureSpec.getSize(heightMeasureSpec)
+                0, 0,getMeasuredWidth(), getMeasuredHeight()
         );
     }
 
@@ -247,13 +274,30 @@ public class ShadowLayout extends FrameLayout {
                     super.dispatchDraw(mCanvas);
 
                     // Get the alpha bounds of bitmap
-                    final Bitmap extractedAlpha = mBitmap.extractAlpha();
+                    Bitmap extractedAlpha = mBitmap.extractAlpha();
                     // Clear past content content to draw shadow
                     mCanvas.drawColor(0, PorterDuff.Mode.CLEAR);
 
                     // Draw extracted alpha bounds of our local canvas
                     mPaint.setColor(adjustShadowAlpha(false));
-                    mCanvas.drawBitmap(extractedAlpha, mShadowDx, mShadowDy, mPaint);
+                    if(mZoomDy !=0f && mZoomDy != Integer.MAX_VALUE){
+                        extractedAlpha = getScaleBitmap(extractedAlpha,mZoomDy);
+                    }
+                    if(mOffsetDx != Integer.MAX_VALUE|| mOffsetDy != Integer.MAX_VALUE){
+                        if(mDrawCenter){
+                            final int w=  extractedAlpha.getWidth();
+                            final int h =  extractedAlpha.getHeight();
+                            float l = (mCanvas.getWidth()-w)/2+(mOffsetDx==Integer.MAX_VALUE?0:mOffsetDx);
+                            float t = (mCanvas.getHeight()-h)/2 +(mOffsetDy==Integer.MAX_VALUE?0:mOffsetDy);
+                            mCanvas.drawBitmap(extractedAlpha, l, t, mPaint);
+                        }else{
+                            mCanvas.drawBitmap(extractedAlpha, mOffsetDx==Integer.MAX_VALUE?0:mOffsetDx, mOffsetDy==Integer.MAX_VALUE?0:mOffsetDy, mPaint);
+
+                        }
+                    }else {
+                        mCanvas.drawBitmap(extractedAlpha, mShadowDx, mShadowDy, mPaint);
+
+                    }
 
                     // Recycle and clear extracted alpha
                     extractedAlpha.recycle();
@@ -273,4 +317,52 @@ public class ShadowLayout extends FrameLayout {
         // Draw child`s
         super.dispatchDraw(canvas);
     }
+    public void setZoomDy(float dy){
+        mInvalidateShadow = true;
+        mZoomDy = dy;
+        postInvalidate();
+    }
+    public void setOffsetDx(float dx){
+        mInvalidateShadow = true;
+        mOffsetDx = dx;
+        postInvalidate();
+    }
+    public void setOffsetDy(float dy){
+        mInvalidateShadow = true;
+        mOffsetDy = dy;
+        postInvalidate();
+    }
+
+    public Bitmap getScaleBitmap(Bitmap mBitmap,float dy) {
+        int width = mBitmap.getWidth();
+        int height = mBitmap.getHeight();
+        float h = height+dy;
+        if(h<=1){
+            h=1;
+        }
+        float scale = h/height;
+        Matrix matrix = new Matrix();
+        matrix.postScale(scale, scale);
+        Bitmap mScaleBitmap = Bitmap.createBitmap(mBitmap, 0, 0, width, height, matrix, true);
+        Log.e("Shadowlayout",scale + "  dy "+ dy);
+        return mScaleBitmap;
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+    }
+    Runnable mRunnable= new Runnable() {
+        @Override
+        public void run() {
+            mInvalidateShadow = true;
+            postInvalidate();
+        }
+    };
+    public void setDrawCenter(boolean drawCenter){
+        this.mDrawCenter = drawCenter;
+        mInvalidateShadow = true;
+        postInvalidate();
+    }
+
 }

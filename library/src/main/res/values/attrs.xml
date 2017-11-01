@@ -4,9 +4,66 @@
     <declare-styleable name="ShadowLayout">
         <attr name="sl_shadowed" format="boolean"/>
         <attr name="sl_shadow_distance" format="dimension"/>
+        <attr name="sl_shadow_offsetdx" format="dimension"/>
+        <attr name="sl_shadow_offsetdy" format="dimension"/>
         <attr name="sl_shadow_angle" format="integer"/>
         <attr name="sl_shadow_radius" format="dimension"/>
         <attr name="sl_shadow_color" format="color"/>
     </declare-styleable>
-
+    <declare-styleable name="ZDepthShadowLayout">
+        <attr name="z_depth" format="enum">
+            <enum name="z_depth0" value="0"/>
+            <enum name="z_depth1" value="1"/>
+            <enum name="z_depth2" value="2"/>
+            <enum name="z_depth3" value="3"/>
+            <enum name="z_depth4" value="4"/>
+            <enum name="z_depth5" value="5"/>
+        </attr>
+        <attr name="z_depth_shape" format="enum">
+            <enum name="rect" value="0"/>
+            <enum name="oval" value="1"/>
+        </attr>
+        <attr name="z_depth_padding" format="enum">
+            <enum name="z_depth0" value="0"/>
+            <enum name="z_depth1" value="1"/>
+            <enum name="z_depth2" value="2"/>
+            <enum name="z_depth3" value="3"/>
+            <enum name="z_depth4" value="4"/>
+            <enum name="z_depth5" value="5"/>
+        </attr>
+        <attr name="z_depth_paddingLeft" format="enum">
+            <enum name="z_depth0" value="0"/>
+            <enum name="z_depth1" value="1"/>
+            <enum name="z_depth2" value="2"/>
+            <enum name="z_depth3" value="3"/>
+            <enum name="z_depth4" value="4"/>
+            <enum name="z_depth5" value="5"/>
+        </attr>
+        <attr name="z_depth_paddingTop" format="enum">
+            <enum name="z_depth0" value="0"/>
+            <enum name="z_depth1" value="1"/>
+            <enum name="z_depth2" value="2"/>
+            <enum name="z_depth3" value="3"/>
+            <enum name="z_depth4" value="4"/>
+            <enum name="z_depth5" value="5"/>
+        </attr>
+        <attr name="z_depth_paddingRight" format="enum">
+            <enum name="z_depth0" value="0"/>
+            <enum name="z_depth1" value="1"/>
+            <enum name="z_depth2" value="2"/>
+            <enum name="z_depth3" value="3"/>
+            <enum name="z_depth4" value="4"/>
+            <enum name="z_depth5" value="5"/>
+        </attr>
+        <attr name="z_depth_paddingBottom" format="enum">
+            <enum name="z_depth0" value="0"/>
+            <enum name="z_depth1" value="1"/>
+            <enum name="z_depth2" value="2"/>
+            <enum name="z_depth3" value="3"/>
+            <enum name="z_depth4" value="4"/>
+            <enum name="z_depth5" value="5"/>
+        </attr>
+        <attr name="z_depth_animDuration" format="integer"/>
+        <attr name="z_depth_doAnim" format="boolean"/>
+    </declare-styleable>
 </resources>
