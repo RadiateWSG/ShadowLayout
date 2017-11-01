@@ -1,21 +1,33 @@
-package com.gigamole.library;
+package com.gigamole.library.shadowdelegate;
 
 import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
-import android.os.Build;
-import android.util.AttributeSet;
-import android.view.View;
 import android.view.animation.LinearInterpolator;
 
+import com.gigamole.library.R;
+import com.gigamole.library.ShadowLayout;
+import com.gigamole.library.ZDepth;
 import com.gigamole.library.shadow.Shadow;
 import com.gigamole.library.shadow.ShadowOval;
 import com.gigamole.library.shadow.ShadowRect;
 
 
-public class ShadowView extends View {
+public class ExactlyModel implements ShadowDeltegate {
+
     protected static final String TAG = "ShadowView";
+
+
+    protected static final int DEFAULT_ATTR_SHAPE = 0;
+    protected static final int DEFAULT_ATTR_ZDEPTH = 1;
+    protected static final int DEFAULT_ATTR_ZDEPTH_PADDING = 5;
+    protected static final int DEFAULT_ATTR_ZDEPTH_ANIM_DURATION = 150;
+    protected static final boolean DEFAULT_ATTR_ZDEPTH_DO_ANIMATION = true;
+
+    protected static final int SHAPE_RECT = 0;
+    protected static final int SHAPE_OVAL = 1;
 
     protected static final String ANIM_PROPERTY_ALPHA_TOP_SHADOW = "alphaTopShadow";
     protected static final String ANIM_PROPERTY_ALPHA_BOTTOM_SHADOW = "alphaBottomShadow";
@@ -25,34 +37,57 @@ public class ShadowView extends View {
     protected static final String ANIM_PROPERTY_BLUR_BOTTOM_SHADOW = "blurBottomShadow";
 
     protected Shadow mShadow;
-    protected ZDepthParam mZDepthParam;
+    protected ZDepth mZDepthParam;
     protected int mZDepthPaddingLeft;
     protected int mZDepthPaddingTop;
     protected int mZDepthPaddingRight;
     protected int mZDepthPaddingBottom;
     protected long mZDepthAnimDuration;
     protected boolean mZDepthDoAnimation;
+    private ShadowLayout mParent;
 
-    protected ShadowView(Context context) {
-        this(context, null);
-        init();
+
+    protected ExactlyModel(ShadowLayout parent, TypedArray typedArray) {
+        mParent = parent;
+        mParent. setClipToPadding(false);
+        init(typedArray);
     }
+    protected void init(TypedArray typedArray) {
 
-    protected ShadowView(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
-        init();
-    }
+        int attrShape = typedArray.getInt(R.styleable.ZDepthShadowLayout_z_depth_shape, DEFAULT_ATTR_SHAPE);
+        int attrZDepth = typedArray.getInt(R.styleable.ZDepthShadowLayout_z_depth, DEFAULT_ATTR_ZDEPTH);
+        int attrZDepthAnimDuration = typedArray.getInt(R.styleable.ZDepthShadowLayout_z_depth_animDuration, DEFAULT_ATTR_ZDEPTH_ANIM_DURATION);
+        boolean attrZDepthDoAnimation = typedArray.getBoolean(R.styleable.ZDepthShadowLayout_z_depth_doAnim, DEFAULT_ATTR_ZDEPTH_DO_ANIMATION);
 
-    protected ShadowView(Context context, AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
-        init();
-    }
+        int attrZDepthPadding = typedArray.getInt(R.styleable.ZDepthShadowLayout_z_depth_padding, -1);
+        int attrZDepthPaddingLeft = typedArray.getInt(R.styleable.ZDepthShadowLayout_z_depth_paddingLeft, -1);
+        int attrZDepthPaddingTop = typedArray.getInt(R.styleable.ZDepthShadowLayout_z_depth_paddingTop, -1);
+        int attrZDepthPaddingRight = typedArray.getInt(R.styleable.ZDepthShadowLayout_z_depth_paddingRight, -1);
+        int attrZDepthPaddingBottom = typedArray.getInt(R.styleable.ZDepthShadowLayout_z_depth_paddingBottom, -1);
 
-    protected void init() {
-        setWillNotDraw(false);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+        if (attrZDepthPadding > -1) {
+            attrZDepthPaddingLeft   = attrZDepthPadding;
+            attrZDepthPaddingTop    = attrZDepthPadding;
+            attrZDepthPaddingRight  = attrZDepthPadding;
+            attrZDepthPaddingBottom = attrZDepthPadding;
+        } else {
+            attrZDepthPaddingLeft   = attrZDepthPaddingLeft   > -1 ? attrZDepthPaddingLeft   : DEFAULT_ATTR_ZDEPTH_PADDING;
+            attrZDepthPaddingTop    = attrZDepthPaddingTop    > -1 ? attrZDepthPaddingTop    : DEFAULT_ATTR_ZDEPTH_PADDING;
+            attrZDepthPaddingRight  = attrZDepthPaddingRight  > -1 ? attrZDepthPaddingRight  : DEFAULT_ATTR_ZDEPTH_PADDING;
+            attrZDepthPaddingBottom = attrZDepthPaddingBottom > -1 ? attrZDepthPaddingBottom : DEFAULT_ATTR_ZDEPTH_PADDING;
         }
+        this.setShape(attrShape);
+        this.setZDepth(attrZDepth);
+        this.setZDepthPaddingLeft(attrZDepthPaddingLeft);
+        this.setZDepthPaddingTop(attrZDepthPaddingTop);
+        this.setZDepthPaddingRight(attrZDepthPaddingRight);
+        this.setZDepthPaddingBottom(attrZDepthPaddingBottom);
+        this.setZDepthAnimDuration(attrZDepthAnimDuration);
+        this.setZDepthDoAnimation(attrZDepthDoAnimation);
+    }
+
+    public Context getContext(){
+        return mParent.getContext();
     }
 
     protected void setZDepthDoAnimation(boolean doAnimation) {
@@ -84,10 +119,10 @@ public class ShadowView extends View {
     }
 
     protected int measureZDepthPadding(ZDepth zDepth) {
-        float maxAboveBlurRadius = zDepth.getBlurTopShadowPx(getContext());
-        float maxAboveOffset     = zDepth.getOffsetYTopShadowPx(getContext());
-        float maxBelowBlurRadius = zDepth.getBlurBottomShadowPx(getContext());
-        float maxBelowOffset     = zDepth.getOffsetYBottomShadowPx(getContext());
+        float maxAboveBlurRadius = zDepth.mBlurTopShadowPx;
+        float maxAboveOffset     = zDepth.mOffsetYTopShadowPx;
+        float maxBelowBlurRadius = zDepth.mBlurBottomShadowPx;
+        float maxBelowOffset     = zDepth.mOffsetYBottomShadowPx;
 
         float maxAboveSize = maxAboveBlurRadius + maxAboveOffset;
         float maxBelowSize = maxBelowBlurRadius + maxBelowOffset;
@@ -113,11 +148,11 @@ public class ShadowView extends View {
 
     protected void setShape(int shape) {
         switch (shape) {
-            case ZDepthShadowLayout.SHAPE_RECT:
+            case SHAPE_RECT:
                 mShadow = new ShadowRect();
                 break;
 
-            case ZDepthShadowLayout.SHAPE_OVAL:
+            case SHAPE_OVAL:
                 mShadow = new ShadowOval();
                 break;
 
@@ -132,8 +167,8 @@ public class ShadowView extends View {
     }
 
     protected void setZDepth(ZDepth zDepth) {
-        mZDepthParam = new ZDepthParam();
-        mZDepthParam.initZDepth(getContext(), zDepth);
+        mZDepthParam = zDepth;
+        mZDepthParam.initZDepth(getContext());
     }
 
     private ZDepth getZDepthWithAttributeValue(int zDepthValue) {
@@ -148,43 +183,7 @@ public class ShadowView extends View {
         }
     }
 
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        int wSize = MeasureSpec.getSize(widthMeasureSpec);
-        int hSize = MeasureSpec.getSize(heightMeasureSpec);
-
-        int wMode = MeasureSpec.getMode(widthMeasureSpec);
-        int hMode = MeasureSpec.getMode(heightMeasureSpec);
-
-        switch (wMode) {
-            case MeasureSpec.EXACTLY:
-                // NOP
-                break;
-
-            case MeasureSpec.AT_MOST:
-            case MeasureSpec.UNSPECIFIED:
-                wSize = 0;
-                break;
-        }
-
-        switch (hMode) {
-            case MeasureSpec.EXACTLY:
-                // NOP
-                break;
-
-            case MeasureSpec.AT_MOST:
-            case MeasureSpec.UNSPECIFIED:
-                hSize = 0;
-                break;
-        }
-
-        super.onMeasure(
-                MeasureSpec.makeMeasureSpec(wSize, wMode),
-                MeasureSpec.makeMeasureSpec(hSize, hMode));
-    }
-
-    @Override
-    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+    public void onLayout(boolean changed, int left, int top, int right, int bottom) {
         int parentWidth  = (right - left);
         int parentHeight = (bottom - top);
 
@@ -195,20 +194,54 @@ public class ShadowView extends View {
                 parentHeight - mZDepthPaddingBottom);
     }
 
-    @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        mShadow.onDraw(canvas);
+    public void onAttachToWindow(){
+
+        int paddingLeft = this.getZDepthPaddingLeft();
+        int paddingTop = this.getZDepthPaddingTop();
+        int paddingRight = this.getZDepthPaddingRight();
+        int paddingBottom = this.getZDepthPaddingBottom();
+        mParent.setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom);
     }
 
-    protected void changeZDepth(ZDepth zDepth) {
+    @Override
+    public void onDetachedFromWindow() {
+
+    }
+
+
+    public void onDraw(Canvas canvas) {
+        mShadow.onDraw(canvas);
+        mParent.superdispatchDraw(canvas);
+    }
+
+    @Override
+    public void onClipCanvas(Canvas canvas) {
+
+    }
+
+    private int getWidth(){
+        return mParent.getMeasuredWidth();
+    }
+    private int getHeight(){
+        return mParent.getMeasuredHeight();
+    }
+    public int getWidthExceptShadow() {
+        return getWidth() - mParent.getPaddingLeft() - mParent.getPaddingRight();
+    }
+
+    public int getHeightExceptShadow() {
+        return getHeight() - mParent.getPaddingTop() - mParent.getPaddingBottom();
+    }
+
+    public void changeZDepth(ZDepth zDepth) {
+        zDepth.initZDepth(getContext());
 
         int   newAlphaTopShadow      = zDepth.getAlphaTopShadow();
         int   newAlphaBottomShadow   = zDepth.getAlphaBottomShadow();
-        float newOffsetYTopShadow    = zDepth.getOffsetYTopShadowPx(getContext());
-        float newOffsetYBottomShadow = zDepth.getOffsetYBottomShadowPx(getContext());
-        float newBlurTopShadow       = zDepth.getBlurTopShadowPx(getContext());
-        float newBlurBottomShadow    = zDepth.getBlurBottomShadowPx(getContext());
+        float newOffsetYTopShadow    = zDepth.mOffsetYTopShadowPx;
+        float newOffsetYBottomShadow = zDepth.mOffsetYBottomShadowPx;
+        float newBlurTopShadow       = zDepth.mBlurTopShadowPx;
+        float newBlurBottomShadow    = zDepth.mBlurBottomShadowPx;
 
         if (!mZDepthDoAnimation) {
             mZDepthParam.mAlphaTopShadow        = newAlphaTopShadow;
@@ -223,7 +256,7 @@ public class ShadowView extends View {
                     mZDepthPaddingTop,
                     getWidth() - mZDepthPaddingRight,
                     getHeight() - mZDepthPaddingBottom);
-            invalidate();
+            mParent.invalidate();
             return;
         }
 
@@ -286,7 +319,7 @@ public class ShadowView extends View {
                         getWidth() - mZDepthPaddingRight,
                         getHeight() - mZDepthPaddingBottom);
 
-                invalidate();
+                mParent.invalidate();
              }
          });
         anim.start();

@@ -7,7 +7,7 @@ import android.graphics.Rect;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RectShape;
 
-import com.gigamole.library.ZDepthParam;
+import com.gigamole.library.ZDepth;
 
 
 public class ShadowRect implements Shadow {
@@ -26,7 +26,7 @@ public class ShadowRect implements Shadow {
     }
 
     @Override
-    public void setParameter(ZDepthParam param, int left, int top, int right, int bottom) {
+    public void setParameter(ZDepth param, int left, int top, int right, int bottom) {
         mRectTopShadow.left   = left;
         mRectTopShadow.top    = (int) (top    + param.mOffsetYTopShadowPx);
         mRectTopShadow.right  = right;

@@ -1,6 +1,7 @@
 package com.gigamole.library;
 
 import android.content.Context;
+import android.graphics.Color;
 
 import com.gigamole.library.utils.DisplayUtils;
 
@@ -57,8 +58,8 @@ public enum ZDepth {
             6.0f
     );
 
-    public final int mAlphaTopShadow; // alpha to black
-    public final int mAlphaBottomShadow; // alpha to black
+    public int mAlphaTopShadow; // alpha to black
+    public int mAlphaBottomShadow; // alpha to black
 
     public final float mOffsetYTopShadow; // dp
     public final float mOffsetYBottomShadow; // dp
@@ -97,5 +98,28 @@ public enum ZDepth {
 
     public float getBlurBottomShadowPx(Context context) {
         return DisplayUtils.convertDpToPx(context, mBlurBottomShadow);
+    }
+
+
+
+    public float mOffsetYTopShadowPx; // px
+    public float mOffsetYBottomShadowPx; // px
+
+    public float mBlurTopShadowPx; // px
+    public float mBlurBottomShadowPx; // px
+
+    public void initZDepth(Context context) {
+        mOffsetYTopShadowPx = getOffsetYTopShadowPx(context);
+        mOffsetYBottomShadowPx = getOffsetYBottomShadowPx(context);
+        mBlurTopShadowPx =getBlurTopShadowPx(context);
+        mBlurBottomShadowPx = getBlurBottomShadowPx(context);
+    }
+
+    public int getColorTopShadow() {
+        return Color.argb(mAlphaTopShadow, 0, 0, 0);
+    }
+
+    public int getColorBottomShadow() {
+        return Color.argb(mAlphaBottomShadow, 0, 0, 0);
     }
 }
