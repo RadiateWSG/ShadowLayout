@@ -1,5 +1,22 @@
-package com.gigamole.library.shadowdelegate;
+/*
+ * Copyright (C) 2015 Basil Miller
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
+package com.gigamole.library;
+
+import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BlurMaskFilter;
@@ -9,20 +26,18 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
 import android.support.annotation.FloatRange;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.View;
+import android.widget.FrameLayout;
 
-import com.gigamole.library.R;
-import com.gigamole.library.ShadowLayout;
+import java.util.logging.Logger;
 
 /**
- * Created by Administrator on 2017/11/1 0001.
+ * Created by GIGAMOLE on 13.04.2016.
  */
-
-public class AutoModel implements ShadowDeltegate {
-
+public class ShadowLayout1 extends FrameLayout {
 
     // Default shadow values
     private final static float DEFAULT_SHADOW_RADIUS = 30.0F;
@@ -65,44 +80,59 @@ public class AutoModel implements ShadowDeltegate {
     private float mOffsetDx;
     private float mZoomDy;
     private boolean mDrawCenter = true;
-    ShadowLayout mParent;
 
-    public AutoModel(ShadowLayout parent,TypedArray typedArray) {
-        mParent = parent;
-        mParent.setWillNotDraw(false);
-        mParent.setLayerType(View.LAYER_TYPE_HARDWARE, mPaint);
+    public ShadowLayout1(final Context context) {
+        this(context, null);
+    }
 
-        setIsShadowed(typedArray.getBoolean(R.styleable.ShadowLayout_sl_shadowed, true));
-        setShadowRadius(
-                typedArray.getDimension(
-                        R.styleable.ShadowLayout_sl_shadow_radius, DEFAULT_SHADOW_RADIUS
-                )
-        );
-        setShadowDistance(
-                typedArray.getDimension(
-                        R.styleable.ShadowLayout_sl_shadow_distance, DEFAULT_SHADOW_DISTANCE
-                )
-        );
-        setShadowAngle(
-                typedArray.getInteger(
-                        R.styleable.ShadowLayout_sl_shadow_angle, (int) DEFAULT_SHADOW_ANGLE
-                )
-        );
-        setShadowColor(
-                typedArray.getColor(
-                        R.styleable.ShadowLayout_sl_shadow_color, DEFAULT_SHADOW_COLOR
-                )
-        );
-        mOffsetDx=typedArray.getDimensionPixelSize(
-                R.styleable.ShadowLayout_sl_shadow_offsetdx, Integer.MAX_VALUE
-        );
-        mOffsetDy=typedArray.getDimensionPixelSize(
-                R.styleable.ShadowLayout_sl_shadow_offsetdy, Integer.MAX_VALUE
-        );
+    public ShadowLayout1(final Context context, final AttributeSet attrs) {
+        this(context, attrs, 0);
+    }
+
+    public ShadowLayout1(final Context context, final AttributeSet attrs, final int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+
+        setWillNotDraw(false);
+        setLayerType(LAYER_TYPE_HARDWARE, mPaint);
+
+        // Retrieve attributes from xml
+        final TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.ShadowLayout);
+        try {
+            setIsShadowed(typedArray.getBoolean(R.styleable.ShadowLayout_sl_shadowed, true));
+            setShadowRadius(
+                    typedArray.getDimension(
+                            R.styleable.ShadowLayout_sl_shadow_radius, DEFAULT_SHADOW_RADIUS
+                    )
+            );
+            setShadowDistance(
+                    typedArray.getDimension(
+                            R.styleable.ShadowLayout_sl_shadow_distance, DEFAULT_SHADOW_DISTANCE
+                    )
+            );
+            setShadowAngle(
+                    typedArray.getInteger(
+                            R.styleable.ShadowLayout_sl_shadow_angle, (int) DEFAULT_SHADOW_ANGLE
+                    )
+            );
+            setShadowColor(
+                    typedArray.getColor(
+                            R.styleable.ShadowLayout_sl_shadow_color, DEFAULT_SHADOW_COLOR
+                    )
+            );
+            mOffsetDx=typedArray.getDimensionPixelSize(
+                    R.styleable.ShadowLayout_sl_shadow_offsetdx, Integer.MAX_VALUE
+            );
+            mOffsetDy=typedArray.getDimensionPixelSize(
+                    R.styleable.ShadowLayout_sl_shadow_offsetdy, Integer.MAX_VALUE
+            );
+        } finally {
+            typedArray.recycle();
+        }
     }
 
     @Override
-    public void onDetachedFromWindow() {
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
         // Clear shadow bitmap
         if (mBitmap != null) {
             mBitmap.recycle();
@@ -116,9 +146,7 @@ public class AutoModel implements ShadowDeltegate {
 
     public void setIsShadowed(final boolean isShadowed) {
         mIsShadowed = isShadowed;
-        if(mParent.isLayoutRequested() &&mParent.getParent()!=null){
-            mParent.postInvalidate();
-        }
+        postInvalidate();
     }
 
     public float getShadowDistance() {
@@ -146,7 +174,7 @@ public class AutoModel implements ShadowDeltegate {
     public void setShadowRadius(final float shadowRadius) {
         mShadowRadius = Math.max(MIN_RADIUS, shadowRadius);
 
-        if ( mParent.isInEditMode()) return;
+        if (isInEditMode()) return;
         // Set blur filter to paint
         mPaint.setMaskFilter(new BlurMaskFilter(mShadowRadius, BlurMaskFilter.Blur.NORMAL));
         resetShadow();
@@ -154,11 +182,11 @@ public class AutoModel implements ShadowDeltegate {
 
     public void setRadius(final float shadowRadius) {
         mShadowRadius = Math.max(MIN_RADIUS, shadowRadius);
-        if ( mParent.isInEditMode()) return;
+        if (isInEditMode()) return;
         // Set blur filter to paint
         mPaint.setMaskFilter(new BlurMaskFilter(mShadowRadius, BlurMaskFilter.Blur.NORMAL));
         mInvalidateShadow = true;
-        mParent.postInvalidate();
+        postInvalidate();
     }
 
     public int getShadowColor() {
@@ -170,10 +198,6 @@ public class AutoModel implements ShadowDeltegate {
         mShadowAlpha = Color.alpha(shadowColor);
 
         resetShadow();
-    }
-    public void invalidateShadow(){
-        mInvalidateShadow = true;
-        mParent.postInvalidate();
     }
 
     public float getShadowDx() {
@@ -192,9 +216,9 @@ public class AutoModel implements ShadowDeltegate {
 
         // Set padding for shadow bitmap
         final int padding = (int) (mShadowDistance + mShadowRadius);
-        mParent.setPadding(padding, padding, padding, padding);
+        setPadding(padding, padding, padding, padding);
         mInvalidateShadow = true;
-        mParent.postInvalidate();
+        postInvalidate();
     }
 
     private int adjustShadowAlpha(final boolean adjust) {
@@ -206,21 +230,28 @@ public class AutoModel implements ShadowDeltegate {
         );
     }
 
-    public void onLayout(boolean changed, int left, int top, int right, int bottom) {
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
+        // Set ShadowLayout bounds
+//        mBounds.set(
+//                0, 0, MeasureSpec.getSize(widthMeasureSpec), MeasureSpec.getSize(heightMeasureSpec)
+//        );
         mBounds.set(
-                0, 0, mParent.getMeasuredWidth(),  mParent.getMeasuredHeight()
+                0, 0,getMeasuredWidth(), getMeasuredHeight()
         );
     }
 
     @Override
-    public void onAttachToWindow() {
-
+    public void requestLayout() {
+        // Redraw shadow
+        mInvalidateShadow = true;
+        super.requestLayout();
     }
 
-
     @Override
-    public void onDraw(final Canvas canvas) {
+    protected void dispatchDraw(final Canvas canvas) {
         // If is not shadowed, skip
         if (mIsShadowed) {
             // If need to redraw shadow
@@ -240,7 +271,7 @@ public class AutoModel implements ShadowDeltegate {
                     // we can draw bitmap as a bottom layer of natural canvas.
                     // We draw shadow like blur effect on bitmap, cause of setShadowLayer() method of
                     // paint does`t draw shadow, it draw another copy of bitmap
-                    mParent.superdispatchDraw(mCanvas);
+                    super.dispatchDraw(mCanvas);
 
                     // Get the alpha bounds of bitmap
                     Bitmap extractedAlpha = mBitmap.extractAlpha();
@@ -284,28 +315,25 @@ public class AutoModel implements ShadowDeltegate {
         }
 
         // Draw child`s
-        mParent.superdispatchDraw(mCanvas);
+        super.dispatchDraw(canvas);
     }
-
-    @Override
-    public void onClipCanvas(Canvas canvas) {
-
+    public void superdispatchDraw(Canvas canvas){
+        super.dispatchDraw(canvas);
     }
-
     public void setZoomDy(float dy){
         mInvalidateShadow = true;
         mZoomDy = dy;
-        mParent.postInvalidate();
+        postInvalidate();
     }
     public void setOffsetDx(float dx){
         mInvalidateShadow = true;
         mOffsetDx = dx;
-        mParent.postInvalidate();
+        postInvalidate();
     }
     public void setOffsetDy(float dy){
         mInvalidateShadow = true;
         mOffsetDy = dy;
-        mParent.postInvalidate();
+        postInvalidate();
     }
 
     public Bitmap getScaleBitmap(Bitmap mBitmap,float dy) {
@@ -323,17 +351,21 @@ public class AutoModel implements ShadowDeltegate {
         return mScaleBitmap;
     }
 
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+    }
     Runnable mRunnable= new Runnable() {
         @Override
         public void run() {
             mInvalidateShadow = true;
-            mParent.postInvalidate();
+            postInvalidate();
         }
     };
     public void setDrawCenter(boolean drawCenter){
         this.mDrawCenter = drawCenter;
         mInvalidateShadow = true;
-        mParent.postInvalidate();
+        postInvalidate();
     }
 
 }

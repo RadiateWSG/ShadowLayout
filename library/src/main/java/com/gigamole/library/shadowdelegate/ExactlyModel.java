@@ -5,6 +5,8 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.os.Build;
+import android.view.View;
 import android.view.animation.LinearInterpolator;
 
 import com.gigamole.library.R;
@@ -47,9 +49,12 @@ public class ExactlyModel implements ShadowDeltegate {
     private ShadowLayout mParent;
 
 
-    protected ExactlyModel(ShadowLayout parent, TypedArray typedArray) {
+    public ExactlyModel(ShadowLayout parent, TypedArray typedArray) {
         mParent = parent;
         mParent. setClipToPadding(false);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            mParent.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+        }
         init(typedArray);
     }
     protected void init(TypedArray typedArray) {
@@ -216,6 +221,11 @@ public class ExactlyModel implements ShadowDeltegate {
 
     @Override
     public void onClipCanvas(Canvas canvas) {
+
+    }
+
+    @Override
+    public void invalidateShadow() {
 
     }
 

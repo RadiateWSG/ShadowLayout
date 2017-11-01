@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.MultiTransformation;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.gigamole.library.ShadowLayout;
+import com.gigamole.library.shadowdelegate.AutoModel;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.FormatStrategy;
 import com.orhanobut.logger.LogcatLogStrategy;
@@ -33,6 +34,8 @@ public class MainActivity extends Activity {
     TextView mTvZoomDy;
     TextView mTvOffsetDy;
     TextView mTvRadius;
+    AutoModel mRoundAm;
+    AutoModel mCirclAm;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +51,8 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         mCircleSL = (ShadowLayout) findViewById(R.id.sl_circle);
         mRoundSL = (ShadowLayout) findViewById(R.id.sl_round);
+        mCirclAm= (AutoModel) mCircleSL.getShadowDeltegate();
+        mRoundAm= (AutoModel) mRoundSL.getShadowDeltegate();
         mImgRound = (ImageView) findViewById(R.id.img_round);
         mTvRadius = (TextView) findViewById(R.id.tv_radius);
         mTvOffsetDx = (TextView) findViewById(R.id.tv_offsetDx);
@@ -71,8 +76,8 @@ public class MainActivity extends Activity {
                 if(fromUser){
                     float zoomDy = dip2px(progress,MainActivity.this);
                     zoomDy -= dip2px(seekBar.getMax()/2,MainActivity.this);
-                    mCircleSL.setZoomDy(zoomDy);
-                    mRoundSL.setZoomDy(zoomDy);
+                    mCirclAm.setZoomDy(zoomDy);
+                    mRoundAm.setZoomDy(zoomDy);
                     mTvZoomDy.setText("zoomdy value ="+zoomDy);
                 }
             }
@@ -94,8 +99,8 @@ public class MainActivity extends Activity {
                 if(fromUser){
                     float offsetDx = dip2px(progress,MainActivity.this);
                     offsetDx -= dip2px(seekBar.getMax()/2,MainActivity.this);
-                    mCircleSL.setOffsetDx(offsetDx);
-                    mRoundSL.setOffsetDx(offsetDx);
+                    mCirclAm.setOffsetDx(offsetDx);
+                    mRoundAm.setOffsetDx(offsetDx);
                     mTvOffsetDx.setText("offsetDx value ="+offsetDx);
                 }
             }
@@ -117,8 +122,8 @@ public class MainActivity extends Activity {
                 if(fromUser){
                     float offsetDy = dip2px(progress,MainActivity.this);
                     offsetDy -= dip2px(seekBar.getMax()/2,MainActivity.this);
-                    mCircleSL.setOffsetDy(offsetDy);
-                    mRoundSL.setOffsetDy(offsetDy);
+                    mCirclAm.setOffsetDy(offsetDy);
+                    mRoundAm.setOffsetDy(offsetDy);
                     mTvOffsetDy.setText("offsetDy value ="+offsetDy);
                 }
             }
@@ -139,8 +144,8 @@ public class MainActivity extends Activity {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if(fromUser){
                     float radius = dip2px(progress,MainActivity.this);
-                    mCircleSL.setRadius(radius);
-                    mRoundSL.setRadius(radius);
+                    mCirclAm.setRadius(radius);
+                    mRoundAm.setRadius(radius);
                     mTvRadius.setText("radius value ="+radius);
                 }
             }
@@ -159,8 +164,8 @@ public class MainActivity extends Activity {
         sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                mCircleSL.setDrawCenter(isChecked);
-                mRoundSL.setDrawCenter(isChecked);
+                mCirclAm.setDrawCenter(isChecked);
+                mRoundAm.setDrawCenter(isChecked);
             }
         });
     }

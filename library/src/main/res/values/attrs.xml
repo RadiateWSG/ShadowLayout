@@ -9,6 +9,11 @@
         <attr name="sl_shadow_angle" format="integer"/>
         <attr name="sl_shadow_radius" format="dimension"/>
         <attr name="sl_shadow_color" format="color"/>
+        <attr name="sl_shadow_model" format="enum">
+            <enum name="auto" value="0"/>
+            <enum name="shadowShap" value="1"/>
+            <enum name="shadowPath" value="2"/>
+        </attr>
     </declare-styleable>
     <declare-styleable name="ZDepthShadowLayout">
         <attr name="z_depth" format="enum">

@@ -13,5 +13,6 @@ public interface ShadowDeltegate {
     void onDetachedFromWindow();
     void onDraw(Canvas canvas) ;
     void onClipCanvas(Canvas canvas);
+    void invalidateShadow();
 
 }
