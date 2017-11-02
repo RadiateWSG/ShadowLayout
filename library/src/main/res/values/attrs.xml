@@ -6,6 +6,7 @@
         <attr name="sl_shadow_distance" format="dimension"/>
         <attr name="sl_shadow_offsetdx" format="dimension"/>
         <attr name="sl_shadow_offsetdy" format="dimension"/>
+        <attr name="sl_shadow_zoomdy" format="dimension"/>
         <attr name="sl_shadow_angle" format="integer"/>
         <attr name="sl_shadow_radius" format="dimension"/>
         <attr name="sl_shadow_rectroundradius" format="dimension"/>

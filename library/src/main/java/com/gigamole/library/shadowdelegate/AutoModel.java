@@ -58,8 +58,6 @@ public class AutoModel implements ShadowDelegate {
     private float mShadowRadius;
     private float mShadowDistance;
     private float mShadowAngle;
-    private float mShadowDx;
-    private float mShadowDy;
     private float mOffsetDy;
     private float mOffsetDx;
     private float mZoomDy;
@@ -77,10 +75,14 @@ public class AutoModel implements ShadowDelegate {
                         R.styleable.ShadowLayout_sl_shadow_radius, DEFAULT_SHADOW_RADIUS
                 )
         );
-        setShadowDistance(
-                typedArray.getDimension(
-                        R.styleable.ShadowLayout_sl_shadow_distance, DEFAULT_SHADOW_DISTANCE
-                )
+        mOffsetDx=typedArray.getDimensionPixelSize(
+                R.styleable.ShadowLayout_sl_shadow_offsetdx, Integer.MAX_VALUE
+        );
+        mOffsetDy=typedArray.getDimensionPixelSize(
+                R.styleable.ShadowLayout_sl_shadow_offsetdy, Integer.MAX_VALUE
+        );
+        mShadowDistance= typedArray.getDimension(
+                R.styleable.ShadowLayout_sl_shadow_distance, 0
         );
         setShadowAngle(
                 typedArray.getInteger(
@@ -92,12 +94,12 @@ public class AutoModel implements ShadowDelegate {
                         R.styleable.ShadowLayout_sl_shadow_color, DEFAULT_SHADOW_COLOR
                 )
         );
-        mOffsetDx=typedArray.getDimensionPixelSize(
-                R.styleable.ShadowLayout_sl_shadow_offsetdx, Integer.MAX_VALUE
-        );
-        mOffsetDy=typedArray.getDimensionPixelSize(
-                R.styleable.ShadowLayout_sl_shadow_offsetdy, Integer.MAX_VALUE
-        );
+
+        mZoomDy = typedArray.getDimensionPixelSize( R.styleable.ShadowLayout_sl_shadow_zoomdy, 0);
+
+        // Set padding for shadow bitmap
+        final int padding = (int) (mShadowRadius+Math.max(mOffsetDx,mOffsetDy));
+        mParent.setPadding(padding, padding, padding, padding);
     }
 
     @Override
@@ -148,7 +150,7 @@ public class AutoModel implements ShadowDelegate {
         if ( mParent.isInEditMode()) return;
         // Set blur filter to paint
         mPaint.setMaskFilter(new BlurMaskFilter(mShadowRadius, BlurMaskFilter.Blur.NORMAL));
-        resetShadow();
+        invalidateShadow();
     }
 
     public void setRadius(final float shadowRadius) {
@@ -167,31 +169,29 @@ public class AutoModel implements ShadowDelegate {
     public void setShadowColor(final int shadowColor) {
         mShadowColor = shadowColor;
         mShadowAlpha = Color.alpha(shadowColor);
-
-        resetShadow();
+        invalidateShadow();
     }
     public void invalidateShadow(){
         mInvalidateShadow = true;
         mParent.postInvalidate();
     }
 
-    public float getShadowDx() {
-        return mShadowDx;
+    public float getOffsetDx() {
+        return mOffsetDx;
     }
 
-    public float getShadowDy() {
-        return mShadowDy;
+    public float getOffsetDy() {
+        return mOffsetDy;
     }
 
     // Reset shadow layer
     private void resetShadow() {
         // Detect shadow axis offset
-        mShadowDx = (float) ((mShadowDistance) * Math.cos(mShadowAngle / 180.0F * Math.PI));
-        mShadowDy = (float) ((mShadowDistance) * Math.sin(mShadowAngle / 180.0F * Math.PI));
+        if(mShadowDistance >0){
+            mOffsetDx = (float) ((mShadowDistance) * Math.cos(mShadowAngle / 180.0F * Math.PI));
+            mOffsetDy = (float) ((mShadowDistance) * Math.sin(mShadowAngle / 180.0F * Math.PI));
+        }
 
-        // Set padding for shadow bitmap
-        final int padding = (int) (mShadowDistance + mShadowRadius);
-        mParent.setPadding(padding, padding, padding, padding);
         mInvalidateShadow = true;
         mParent.postInvalidate();
     }
@@ -251,19 +251,14 @@ public class AutoModel implements ShadowDelegate {
                     if(mZoomDy !=0f && mZoomDy != Integer.MAX_VALUE){
                         extractedAlpha = getScaleBitmap(extractedAlpha,mZoomDy);
                     }
-                    if(mOffsetDx != Integer.MAX_VALUE|| mOffsetDy != Integer.MAX_VALUE){
-                        if(mDrawCenter){
-                            final int w=  extractedAlpha.getWidth();
-                            final int h =  extractedAlpha.getHeight();
-                            float l = (mCanvas.getWidth()-w)/2+(mOffsetDx==Integer.MAX_VALUE?0:mOffsetDx);
-                            float t = (mCanvas.getHeight()-h)/2 +(mOffsetDy==Integer.MAX_VALUE?0:mOffsetDy);
-                            mCanvas.drawBitmap(extractedAlpha, l, t, mPaint);
-                        }else{
-                            mCanvas.drawBitmap(extractedAlpha, mOffsetDx==Integer.MAX_VALUE?0:mOffsetDx, mOffsetDy==Integer.MAX_VALUE?0:mOffsetDy, mPaint);
-
-                        }
-                    }else {
-                        mCanvas.drawBitmap(extractedAlpha, mShadowDx, mShadowDy, mPaint);
+                    if(mDrawCenter){
+                        final int w=  extractedAlpha.getWidth();
+                        final int h =  extractedAlpha.getHeight();
+                        float l = (mCanvas.getWidth()-w)/2+(mOffsetDx==Integer.MAX_VALUE?0:mOffsetDx);
+                        float t = (mCanvas.getHeight()-h)/2 +(mOffsetDy==Integer.MAX_VALUE?0:mOffsetDy);
+                        mCanvas.drawBitmap(extractedAlpha, l, t, mPaint);
+                    }else{
+                        mCanvas.drawBitmap(extractedAlpha, mOffsetDx==Integer.MAX_VALUE?0:mOffsetDx, mOffsetDy==Integer.MAX_VALUE?0:mOffsetDy, mPaint);
 
                     }
 

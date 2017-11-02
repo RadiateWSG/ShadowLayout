@@ -72,6 +72,7 @@ public class ShadowLayout extends FrameLayout {
     @Override
     protected boolean drawChild(Canvas canvas, View child, long drawingTime) {
         try {
+            canvas.save();
             return mShadowDeltegate.onClipCanvas(canvas,child)&super.drawChild(canvas, child, drawingTime);
         }finally {
             canvas.restore();

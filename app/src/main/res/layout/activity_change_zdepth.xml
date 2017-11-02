@@ -89,9 +89,12 @@
                 shadow:sl_shadow_rectroundradius="5dp"
                 shadow:z_depth="z_depth3"
                 shadow:z_depth_clipcanvas="true"
+                shadow:z_depth_padding="z_depth2"
                 shadow:z_depth_shape="rect">
 
-                <Button
+                <TextView
+                    android:padding="8dp"
+                    android:background="#4D9CDF"
                     android:id="@+id/button_zDepth_0"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -104,12 +107,15 @@
                 android:layout_centerVertical="true"
                 android:layout_toLeftOf="@+id/view_dummy"
                 shadow:sl_shadow_model="shadowShap"
-                shadow:sl_shadow_rectroundradius="3dp"
+                shadow:sl_shadow_rectroundradius="7dp"
                 shadow:z_depth="z_depth1"
                 shadow:z_depth_clipcanvas="true"
+                shadow:z_depth_padding="z_depth2"
                 shadow:z_depth_shape="rect">
 
-                <Button
+                <TextView
+                    android:padding="8dp"
+                    android:background="#4D9CDF"
                     android:id="@+id/button_zDepth_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -123,12 +129,15 @@
                 android:layout_centerVertical="true"
                 android:layout_toLeftOf="@+id/view_dummy"
                 shadow:sl_shadow_model="shadowShap"
-                shadow:sl_shadow_rectroundradius="2dp"
+                shadow:sl_shadow_rectroundradius="10dp"
                 shadow:z_depth="z_depth2"
+                shadow:z_depth_padding="z_depth2"
                 shadow:z_depth_clipcanvas="true"
                 shadow:z_depth_shape="rect">
 
-                <Button
+                <TextView
+                    android:padding="8dp"
+                    android:background="#4D9CDF"
                     android:id="@+id/button_zDepth_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -149,12 +158,15 @@
                 android:layout_centerVertical="true"
                 android:layout_toLeftOf="@+id/view_dummy"
                 shadow:sl_shadow_model="shadowShap"
-                shadow:sl_shadow_rectroundradius="3dp"
+                shadow:sl_shadow_rectroundradius="12dp"
                 shadow:z_depth="z_depth3"
+                shadow:z_depth_padding="z_depth3"
                 shadow:z_depth_clipcanvas="true"
                 shadow:z_depth_shape="rect">
 
-                <Button
+                <TextView
+                    android:padding="8dp"
+                    android:background="#4D9CDF"
                     android:id="@+id/button_zDepth_3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -167,35 +179,21 @@
                 android:layout_centerVertical="true"
                 android:layout_toLeftOf="@+id/view_dummy"
                 shadow:sl_shadow_model="shadowShap"
-                shadow:sl_shadow_rectroundradius="4dp"
+                shadow:sl_shadow_rectroundradius="14dp"
                 shadow:z_depth="z_depth4"
+                shadow:z_depth_padding="z_depth4"
                 shadow:z_depth_clipcanvas="true"
                 shadow:z_depth_shape="rect">
 
-                <Button
+                <TextView
+                    android:padding="8dp"
+                    android:background="#4D9CDF"
                     android:id="@+id/button_zDepth_4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="ZDepth 4" />
             </com.gigamole.library.ShadowLayout>
 
-            <com.gigamole.library.ShadowLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toLeftOf="@+id/view_dummy"
-                shadow:sl_shadow_model="shadowShap"
-                shadow:sl_shadow_rectroundradius="5dp"
-                shadow:z_depth="z_depth5"
-                shadow:z_depth_clipcanvas="true"
-                shadow:z_depth_shape="rect">
-
-                <Button
-                    android:id="@+id/button_zDepth_5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ZDepth 5" />
-            </com.gigamole.library.ShadowLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -210,27 +208,42 @@
                 android:layout_centerVertical="true"
                 android:layout_toLeftOf="@+id/view_dummy"
                 shadow:sl_shadow_model="shadowShap"
-                shadow:sl_shadow_rectroundradius="6dp"
-                shadow:z_depth="z_depth6"
+                shadow:sl_shadow_rectroundradius="15dp"
+                shadow:z_depth="z_depth5"
+                shadow:z_depth_padding="z_depth5"
                 shadow:z_depth_clipcanvas="true"
                 shadow:z_depth_shape="rect">
 
-                <Button
+                <TextView
+                    android:padding="8dp"
+                    android:background="#4D9CDF"
+                    android:id="@+id/button_zDepth_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ZDepth 5" />
+            </com.gigamole.library.ShadowLayout>
+            <com.gigamole.library.ShadowLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/view_dummy"
+                shadow:sl_shadow_model="shadowShap"
+                shadow:sl_shadow_rectroundradius="17dp"
+                shadow:z_depth="z_depth6"
+                shadow:z_depth_padding="z_depth5"
+                shadow:z_depth_clipcanvas="true"
+                shadow:z_depth_shape="rect">
+
+                <TextView
+                    android:padding="8dp"
+                    android:background="#4D9CDF"
                     android:id="@+id/button_zDepth_6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="ZDepth 6" />
             </com.gigamole.library.ShadowLayout>
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="" />
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="" />
         </LinearLayout>
 
 

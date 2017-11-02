@@ -57,6 +57,9 @@ public class MainActivity extends Activity {
         ButterKnife.bind(this);
         mCircleSL = (ShadowLayout) findViewById(R.id.sl_circle);
         mRoundSL = (ShadowLayout) findViewById(R.id.sl_round);
+        int value= (int) DisplayUtil.dip2px(30,this);
+        mRoundSL.setPadding(value,value,value,value);
+        mCircleSL.setPadding(value,value,value,value);
         mCirclAm= (AutoModel) mCircleSL.getShadowDeltegate();
         mRoundAm= (AutoModel) mRoundSL.getShadowDeltegate();
         mImgRound = (ImageView) findViewById(R.id.img_round);
