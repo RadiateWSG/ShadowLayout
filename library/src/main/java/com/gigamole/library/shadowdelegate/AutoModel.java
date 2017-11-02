@@ -10,7 +10,6 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.support.annotation.FloatRange;
-import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 
@@ -21,7 +20,7 @@ import com.gigamole.library.ShadowLayout;
  * Created by Administrator on 2017/11/1 0001.
  */
 
-public class AutoModel implements ShadowDeltegate {
+public class AutoModel implements ShadowDelegate {
 
 
     // Default shadow values
@@ -288,8 +287,8 @@ public class AutoModel implements ShadowDeltegate {
     }
 
     @Override
-    public void onClipCanvas(Canvas canvas) {
-
+    public boolean onClipCanvas(Canvas canvas,View child) {
+        return false;
     }
 
     public void setZoomDy(float dy){

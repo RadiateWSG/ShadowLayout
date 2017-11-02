@@ -18,8 +18,8 @@ public enum ZDepth {
     ),
 
     Depth1(
-            30, // alpha to black
-            61, // alpha to black
+            28, // alpha to black
+            50, // alpha to black
             1.0f, // dp
             1.0f, // dp
             1.5f, // dp
@@ -56,6 +56,14 @@ public enum ZDepth {
             15.0f,
             19.0f,
             6.0f
+    ),
+    Depth6(
+            80,
+            58,
+            26.0f,
+            19.0f,
+            23.0f,
+            7.0f
     );
 
     public int mAlphaTopShadow; // alpha to black

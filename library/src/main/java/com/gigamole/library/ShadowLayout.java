@@ -4,11 +4,12 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.FrameLayout;
 
 import com.gigamole.library.shadowdelegate.AutoModel;
 import com.gigamole.library.shadowdelegate.ExactlyModel;
-import com.gigamole.library.shadowdelegate.ShadowDeltegate;
+import com.gigamole.library.shadowdelegate.ShadowDelegate;
 
 /**
  * Created by Administrator on 2017/11/1 0001.
@@ -19,7 +20,7 @@ public class ShadowLayout extends FrameLayout {
     public static final int SHADOW_MODEL_SHAP = 1;
     public static final int SHADOW_MODEL_PATH = 2;
 
-    ShadowDeltegate mShadowDeltegate;
+    ShadowDelegate mShadowDeltegate;
 
     public ShadowLayout(final Context context) {
         this(context, null);
@@ -64,13 +65,23 @@ public class ShadowLayout extends FrameLayout {
 
     @Override
     protected void dispatchDraw(Canvas canvas) {
-        mShadowDeltegate.onClipCanvas(canvas);
         mShadowDeltegate.onDraw(canvas);
+
     }
+
+    @Override
+    protected boolean drawChild(Canvas canvas, View child, long drawingTime) {
+        try {
+            return mShadowDeltegate.onClipCanvas(canvas,child)&super.drawChild(canvas, child, drawingTime);
+        }finally {
+            canvas.restore();
+        }
+    }
+
     public void superdispatchDraw(Canvas canvas){
         super.dispatchDraw(canvas);
     }
-    public ShadowDeltegate getShadowDeltegate(){
+    public ShadowDelegate getShadowDeltegate(){
         return mShadowDeltegate;
     }
 }

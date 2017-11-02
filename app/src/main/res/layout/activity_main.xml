@@ -16,9 +16,72 @@
         android:orientation="vertical">
 
         <com.gigamole.library.ShadowLayout
-            android:visibility="gone"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="visible"
+            app:sl_shadow_model="shadowShap"
+            app:z_depth="z_depth3"
+            app:z_depth_clipcanvas="true"
+            app:z_depth_shape="oval">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/quila" />
+        </com.gigamole.library.ShadowLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <com.gigamole.library.ShadowLayout
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:sl_shadow_model="shadowShap"
+                app:sl_shadow_rectroundradius="7dp"
+                app:z_depth="z_depth2"
+                app:z_depth_clipcanvas="true"
+                app:z_depth_shape="rect">
+
+                <TextView
+                    android:id="@+id/tv_Simplezdepth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#31B4E1"
+                    android:padding="5dp"
+                    android:text="SimpleZDepth" />
+            </com.gigamole.library.ShadowLayout>
+
+            <com.gigamole.library.ShadowLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:sl_shadow_model="shadowShap"
+                app:sl_shadow_rectroundradius="7dp"
+                app:z_depth="z_depth1"
+                app:z_depth_clipcanvas="true"
+                app:z_depth_shape="rect">
+
+                <TextView
+                    android:id="@+id/tv_Changezdepth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#31B4E1"
+                    android:padding="5dp"
+                    android:text="Change ZDepth" />
+            </com.gigamole.library.ShadowLayout>
+        </LinearLayout>
+
+        <com.gigamole.library.ShadowLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
             app:sl_shadow_angle="45"
             app:sl_shadow_color="#9e000000"
             app:sl_shadow_distance="4dp"
@@ -43,9 +106,9 @@
         </com.gigamole.library.ShadowLayout>
 
         <com.gigamole.library.ShadowLayout
-            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             app:sl_shadow_angle="45"
             app:sl_shadow_color="#4ea3e8"
             app:sl_shadow_distance="3dp"
@@ -181,8 +244,8 @@
             android:layout_height="wrap_content"
             app:sl_shadow_angle="45"
             app:sl_shadow_color="#93111111"
-            app:sl_shadow_distance="15dp"
-            app:sl_shadow_radius="8dp">
+            app:sl_shadow_distance="25dp"
+            app:sl_shadow_radius="15dp">
 
             <ImageView
                 android:id="@+id/img_round"
@@ -197,8 +260,8 @@
             android:layout_height="wrap_content"
             app:sl_shadow_angle="45"
             app:sl_shadow_color="#93111111"
-            app:sl_shadow_distance="15dp"
-            app:sl_shadow_radius="8dp">
+            app:sl_shadow_distance="25dp"
+            app:sl_shadow_radius="15dp">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -259,10 +322,11 @@
             android:layout_height="wrap_content"
             android:max="40"
             android:progress="20" />
+
         <Switch
             android:id="@+id/switch_drawCenter"
-            android:checked="true"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:checked="true" />
     </LinearLayout>
 </ScrollView>

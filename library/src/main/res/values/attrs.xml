@@ -8,14 +8,13 @@
         <attr name="sl_shadow_offsetdy" format="dimension"/>
         <attr name="sl_shadow_angle" format="integer"/>
         <attr name="sl_shadow_radius" format="dimension"/>
+        <attr name="sl_shadow_rectroundradius" format="dimension"/>
         <attr name="sl_shadow_color" format="color"/>
         <attr name="sl_shadow_model" format="enum">
             <enum name="auto" value="0"/>
             <enum name="shadowShap" value="1"/>
             <enum name="shadowPath" value="2"/>
         </attr>
-    </declare-styleable>
-    <declare-styleable name="ZDepthShadowLayout">
         <attr name="z_depth" format="enum">
             <enum name="z_depth0" value="0"/>
             <enum name="z_depth1" value="1"/>
@@ -23,6 +22,7 @@
             <enum name="z_depth3" value="3"/>
             <enum name="z_depth4" value="4"/>
             <enum name="z_depth5" value="5"/>
+            <enum name="z_depth6" value="6"/>
         </attr>
         <attr name="z_depth_shape" format="enum">
             <enum name="rect" value="0"/>
@@ -70,5 +70,6 @@
         </attr>
         <attr name="z_depth_animDuration" format="integer"/>
         <attr name="z_depth_doAnim" format="boolean"/>
+        <attr name="z_depth_clipcanvas" format="boolean"/>
     </declare-styleable>
 </resources>

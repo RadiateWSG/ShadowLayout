@@ -1,6 +1,7 @@
 package com.gigamole.shadowlayout;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
@@ -19,6 +20,10 @@ import com.orhanobut.logger.LogcatLogStrategy;
 import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;
 
+import app.mosn.zdepthshadowsample.ChangeZDepthActivity;
+import app.mosn.zdepthshadowsample.SimpleZDepthActivity;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
 import static com.bumptech.glide.request.RequestOptions.bitmapTransform;
@@ -49,6 +54,7 @@ public class MainActivity extends Activity {
 
         Logger.addLogAdapter(new AndroidLogAdapter(formatStrategy));
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
         mCircleSL = (ShadowLayout) findViewById(R.id.sl_circle);
         mRoundSL = (ShadowLayout) findViewById(R.id.sl_round);
         mCirclAm= (AutoModel) mCircleSL.getShadowDeltegate();
@@ -168,5 +174,15 @@ public class MainActivity extends Activity {
                 mRoundAm.setDrawCenter(isChecked);
             }
         });
+    }
+    @OnClick(R.id.tv_Simplezdepth)
+    public void goSimpleZdepth(){
+        Intent intent = new Intent(this, SimpleZDepthActivity.class);
+        startActivity(intent);
+    }
+    @OnClick(R.id.tv_Changezdepth)
+    public void goChangeZdepth(){
+        Intent intent = new Intent(this, ChangeZDepthActivity.class);
+        startActivity(intent);
     }
 }
