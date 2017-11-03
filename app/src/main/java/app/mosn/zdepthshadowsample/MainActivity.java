@@ -192,6 +192,16 @@ public class MainActivity extends Activity  {
         Intent intent = new Intent(this, ChangeZDepthActivity.class);
         startActivity(intent);
     }
+    @OnClick(R.id.sl_goSimpleAuto)
+    public void goSimpleAuto(){
+        Intent intent = new Intent(this, SimpleAutoActivity.class);
+        startActivity(intent);
+    }
+    @OnClick(R.id.sl_goAngleActivity)
+    public void goAngleAuto(){
+        Intent intent = new Intent(this, SimpleAngleAutoActivity.class);
+        startActivity(intent);
+    }
     @OnClick(R.id.sl_round)
     public void roundSelectColor(){
         ColorPickerDialog dialog =ColorPickerDialog.newBuilder()

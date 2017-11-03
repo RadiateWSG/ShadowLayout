@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.ytjojo.shadowlayout.ShadowLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:sl_shadow_angle="45"
+        app:sl_shadow_color="#9e000000"
+        app:sl_shadow_distance="4dp"
+        app:sl_shadow_radius="4dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="56dp"
+            android:layout_marginBottom="68dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_logo" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:text="HOW WE WORK"
+            android:textColor="#414141"
+            android:textSize="18sp"
+            android:typeface="sans" />
+
+    </com.ytjojo.shadowlayout.ShadowLayout>
+
+    <com.ytjojo.shadowlayout.ShadowLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:sl_shadow_angle="45"
+        app:sl_shadow_color="#4ea3e8"
+        app:sl_shadow_distance="3dp"
+        app:sl_shadow_radius="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="140dp"
+                        android:layout_height="140dp"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/ic_strategy" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Strategy"
+                        android:textColor="#3d80b9"
+                        android:textSize="18sp"
+                        android:typeface="sans" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="24dp"
+                    android:layout_height="0dp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="140dp"
+                        android:layout_height="140dp"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/ic_design" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Design"
+                        android:textColor="#3d80b9"
+                        android:textSize="18sp"
+                        android:typeface="sans" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="140dp"
+                        android:layout_height="140dp"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/ic_development" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Development"
+                        android:textColor="#3d80b9"
+                        android:textSize="18sp"
+                        android:typeface="sans" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="24dp"
+                    android:layout_height="0dp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="140dp"
+                        android:layout_height="140dp"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/ic_qa" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="QA"
+                        android:textColor="#3d80b9"
+                        android:textSize="18sp"
+                        android:typeface="sans" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+    </com.ytjojo.shadowlayout.ShadowLayout>
+
+</LinearLayout>
