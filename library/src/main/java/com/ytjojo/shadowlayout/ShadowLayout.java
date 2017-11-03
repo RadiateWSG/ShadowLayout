@@ -1,15 +1,16 @@
-package com.gigamole.library;
+package com.ytjojo.shadowlayout;
 
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.support.annotation.ColorInt;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
 
-import com.gigamole.library.shadowdelegate.AutoModel;
-import com.gigamole.library.shadowdelegate.ExactlyModel;
-import com.gigamole.library.shadowdelegate.ShadowDelegate;
+import com.ytjojo.shadowlayout.shadowdelegate.AutoModel;
+import com.ytjojo.shadowlayout.shadowdelegate.ExactlyModel;
+import com.ytjojo.shadowlayout.shadowdelegate.ShadowDelegate;
 
 /**
  * Created by Administrator on 2017/11/1 0001.
@@ -34,8 +35,8 @@ public class ShadowLayout extends FrameLayout {
         super(context, attrs, defStyleAttr);
         setWillNotDraw(false);
         // Retrieve attributes from xml
-        final TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.ShadowLayout);
-        int model = typedArray.getInt(R.styleable.ShadowLayout_sl_shadow_model, SHADOW_MODEL_AUTO);
+        final TypedArray typedArray = context.obtainStyledAttributes(attrs, com.ytjojo.shadowlayout.R.styleable.ShadowLayout);
+        int model = typedArray.getInt(com.ytjojo.shadowlayout.R.styleable.ShadowLayout_sl_shadow_model, SHADOW_MODEL_AUTO);
         if (model == SHADOW_MODEL_AUTO) {
             mShadowDeltegate = new AutoModel(this, typedArray);
         } else if (model == SHADOW_MODEL_SHAP) {
@@ -78,7 +79,9 @@ public class ShadowLayout extends FrameLayout {
             canvas.restore();
         }
     }
-
+    public void setShadowColor(@ColorInt int color) {
+        mShadowDeltegate.setShadowColor(color);
+    }
     public void superdispatchDraw(Canvas canvas){
         super.dispatchDraw(canvas);
     }

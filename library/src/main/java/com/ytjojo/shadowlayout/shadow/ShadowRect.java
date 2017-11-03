@@ -1,4 +1,4 @@
-package com.gigamole.library.shadow;
+package com.ytjojo.shadowlayout.shadow;
 
 import android.graphics.BlurMaskFilter;
 import android.graphics.Canvas;

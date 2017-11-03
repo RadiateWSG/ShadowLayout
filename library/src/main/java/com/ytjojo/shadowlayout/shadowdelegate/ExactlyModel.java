@@ -1,22 +1,23 @@
-package com.gigamole.library.shadowdelegate;
+package com.ytjojo.shadowlayout.shadowdelegate;
 
 import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Rect;
 import android.os.Build;
+import android.support.annotation.ColorInt;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 
-import com.gigamole.library.R;
-import com.gigamole.library.ShadowLayout;
-import com.gigamole.library.ZDepth;
-import com.gigamole.library.shadow.Shadow;
-import com.gigamole.library.shadow.ShadowOval;
-import com.gigamole.library.shadow.ShadowRect;
+import com.ytjojo.shadowlayout.R;
+import com.ytjojo.shadowlayout.ShadowLayout;
+import com.ytjojo.shadowlayout.ZDepth;
+import com.ytjojo.shadowlayout.shadow.Shadow;
+import com.ytjojo.shadowlayout.shadow.ShadowOval;
+import com.ytjojo.shadowlayout.shadow.ShadowRect;
+import com.ytjojo.shadowlayout.utils.ColorUtil;
 
 
 public class ExactlyModel implements ShadowDelegate {
@@ -29,6 +30,7 @@ public class ExactlyModel implements ShadowDelegate {
     protected static final int DEFAULT_ATTR_ZDEPTH_PADDING = 5;
     protected static final int DEFAULT_ATTR_ZDEPTH_ANIM_DURATION = 150;
     protected static final boolean DEFAULT_ATTR_ZDEPTH_DO_ANIMATION = true;
+    private final static int DEFAULT_SHADOW_COLOR = 0xFF333333;
 
     protected static final int SHAPE_RECT = 0;
     protected static final int SHAPE_OVAL = 1;
@@ -50,15 +52,17 @@ public class ExactlyModel implements ShadowDelegate {
     protected boolean mZDepthDoAnimation;
     private ShadowLayout mParent;
     boolean mClipCanvas;
+    private int mShadowColor = DEFAULT_SHADOW_COLOR;
 
     public ExactlyModel(ShadowLayout parent, TypedArray typedArray) {
         mParent = parent;
-        mParent. setClipToPadding(false);
+        mParent.setClipToPadding(false);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             mParent.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         }
         init(typedArray);
     }
+
     protected void init(TypedArray typedArray) {
 
         int attrShape = typedArray.getInt(R.styleable.ShadowLayout_z_depth_shape, DEFAULT_ATTR_SHAPE);
@@ -71,22 +75,23 @@ public class ExactlyModel implements ShadowDelegate {
         int attrZDepthPaddingTop = typedArray.getInt(R.styleable.ShadowLayout_z_depth_paddingTop, -1);
         int attrZDepthPaddingRight = typedArray.getInt(R.styleable.ShadowLayout_z_depth_paddingRight, -1);
         int attrZDepthPaddingBottom = typedArray.getInt(R.styleable.ShadowLayout_z_depth_paddingBottom, -1);
-        mClipCanvas = typedArray.getBoolean(R.styleable.ShadowLayout_z_depth_clipcanvas,false);
+        mClipCanvas = typedArray.getBoolean(R.styleable.ShadowLayout_z_depth_clipcanvas, false);
+        mShadowColor = typedArray.getColor(R.styleable.ShadowLayout_sl_shadow_color, DEFAULT_SHADOW_COLOR);
         if (attrZDepthPadding > -1) {
-            attrZDepthPaddingLeft   = attrZDepthPadding;
-            attrZDepthPaddingTop    = attrZDepthPadding;
-            attrZDepthPaddingRight  = attrZDepthPadding;
+            attrZDepthPaddingLeft = attrZDepthPadding;
+            attrZDepthPaddingTop = attrZDepthPadding;
+            attrZDepthPaddingRight = attrZDepthPadding;
             attrZDepthPaddingBottom = attrZDepthPadding;
         } else {
-            attrZDepthPaddingLeft   = attrZDepthPaddingLeft   > -1 ? attrZDepthPaddingLeft   : DEFAULT_ATTR_ZDEPTH_PADDING;
-            attrZDepthPaddingTop    = attrZDepthPaddingTop    > -1 ? attrZDepthPaddingTop    : DEFAULT_ATTR_ZDEPTH_PADDING;
-            attrZDepthPaddingRight  = attrZDepthPaddingRight  > -1 ? attrZDepthPaddingRight  : DEFAULT_ATTR_ZDEPTH_PADDING;
+            attrZDepthPaddingLeft = attrZDepthPaddingLeft > -1 ? attrZDepthPaddingLeft : DEFAULT_ATTR_ZDEPTH_PADDING;
+            attrZDepthPaddingTop = attrZDepthPaddingTop > -1 ? attrZDepthPaddingTop : DEFAULT_ATTR_ZDEPTH_PADDING;
+            attrZDepthPaddingRight = attrZDepthPaddingRight > -1 ? attrZDepthPaddingRight : DEFAULT_ATTR_ZDEPTH_PADDING;
             attrZDepthPaddingBottom = attrZDepthPaddingBottom > -1 ? attrZDepthPaddingBottom : DEFAULT_ATTR_ZDEPTH_PADDING;
         }
-        int roundRectRadius = typedArray.getDimensionPixelOffset(R.styleable.ShadowLayout_sl_shadow_rectroundradius,0);
+        int roundRectRadius = typedArray.getDimensionPixelOffset(R.styleable.ShadowLayout_sl_shadow_rectroundradius, 0);
         this.setShape(attrShape);
-        if(attrShape == SHAPE_RECT){
-            ((ShadowRect)mShadow).setRoundRectRadius(roundRectRadius);
+        if (attrShape == SHAPE_RECT) {
+            ((ShadowRect) mShadow).setRoundRectRadius(roundRectRadius);
         }
         this.setZDepth(attrZDepth);
         this.setZDepthPaddingLeft(attrZDepthPaddingLeft);
@@ -97,7 +102,7 @@ public class ExactlyModel implements ShadowDelegate {
         this.setZDepthDoAnimation(attrZDepthDoAnimation);
     }
 
-    public Context getContext(){
+    public Context getContext() {
         return mParent.getContext();
     }
 
@@ -135,9 +140,9 @@ public class ExactlyModel implements ShadowDelegate {
 
     protected int measureZDepthPadding(ZDepth zDepth) {
         float maxAboveBlurRadius = zDepth.mBlurTopShadowPx;
-        float maxAboveOffset     = zDepth.mOffsetYTopShadowPx;
+        float maxAboveOffset = zDepth.mOffsetYTopShadowPx;
         float maxBelowBlurRadius = zDepth.mBlurBottomShadowPx;
-        float maxBelowOffset     = zDepth.mOffsetYBottomShadowPx;
+        float maxBelowOffset = zDepth.mOffsetYBottomShadowPx;
 
         float maxAboveSize = maxAboveBlurRadius + maxAboveOffset;
         float maxBelowSize = maxBelowBlurRadius + maxBelowOffset;
@@ -188,29 +193,39 @@ public class ExactlyModel implements ShadowDelegate {
 
     private ZDepth getZDepthWithAttributeValue(int zDepthValue) {
         switch (zDepthValue) {
-            case 0: return ZDepth.Depth0;
-            case 1: return ZDepth.Depth1;
-            case 2: return ZDepth.Depth2;
-            case 3: return ZDepth.Depth3;
-            case 4: return ZDepth.Depth4;
-            case 5: return ZDepth.Depth5;
-            case 6: return ZDepth.Depth6;
-            default: throw new IllegalArgumentException("unknown zDepth value.");
+            case 0:
+                return ZDepth.Depth0;
+            case 1:
+                return ZDepth.Depth1;
+            case 2:
+                return ZDepth.Depth2;
+            case 3:
+                return ZDepth.Depth3;
+            case 4:
+                return ZDepth.Depth4;
+            case 5:
+                return ZDepth.Depth5;
+            case 6:
+                return ZDepth.Depth6;
+            default:
+                throw new IllegalArgumentException("unknown zDepth value.");
         }
     }
-    Rect mShadowDrawingRect =new Rect();
+
+    Rect mShadowDrawingRect = new Rect();
+
     public void onLayout(boolean changed, int left, int top, int right, int bottom) {
-        int parentWidth  = (right - left);
+        int parentWidth = (right - left);
         int parentHeight = (bottom - top);
         mShadowDrawingRect.set(mZDepthPaddingLeft,
                 mZDepthPaddingTop,
-                parentWidth  - mZDepthPaddingRight,
+                parentWidth - mZDepthPaddingRight,
                 parentHeight - mZDepthPaddingBottom);
         setParameterToShadow();
-        mShadow.onLayout(mParent,left,top,right,bottom);
+        mShadow.onLayout(mParent, left, top, right, bottom);
     }
 
-    public void onAttachToWindow(){
+    public void onAttachToWindow() {
 
         int paddingLeft = this.getZDepthPaddingLeft();
         int paddingTop = this.getZDepthPaddingTop();
@@ -232,9 +247,9 @@ public class ExactlyModel implements ShadowDelegate {
     }
 
     @Override
-    public boolean onClipCanvas(Canvas canvas,View child) {
-        if(mClipCanvas){
-            boolean result = mShadow.onClipChildCanvas(canvas,child);
+    public boolean onClipCanvas(Canvas canvas, View child) {
+        if (mClipCanvas) {
+            boolean result = mShadow.onClipChildCanvas(canvas, child);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 child.invalidateOutline();
             }
@@ -246,15 +261,24 @@ public class ExactlyModel implements ShadowDelegate {
 
     @Override
     public void invalidateShadow() {
-
+        mParent.postInvalidate();
     }
 
-    private int getWidth(){
+    @Override
+    public void setShadowColor(@ColorInt int color) {
+        this.mShadowColor = color;
+        setParameterToShadow();
+        invalidateShadow();
+    }
+
+    private int getWidth() {
         return mParent.getMeasuredWidth();
     }
-    private int getHeight(){
+
+    private int getHeight() {
         return mParent.getMeasuredHeight();
     }
+
     public int getWidthExceptShadow() {
         return getWidth() - mParent.getPaddingLeft() - mParent.getPaddingRight();
     }
@@ -263,11 +287,13 @@ public class ExactlyModel implements ShadowDelegate {
         return getHeight() - mParent.getPaddingTop() - mParent.getPaddingBottom();
     }
 
-    private void setParameterToShadow(){
-        int colorTop = Color.argb(mZDepthParam.mAlphaTopShadow, 0x44,0x44,0x44);
-        int colorBottom = Color.argb(mZDepthParam.mAlphaBottomShadow, 0x44,0x44,0x44);
-        mShadow.setParameter(colorTop,colorBottom,mZDepthParam.mOffsetYTopShadowPx,mZDepthParam.mOffsetYBottomShadowPx,mZDepthParam.mBlurTopShadowPx,mZDepthParam.mBlurBottomShadowPx,mShadowDrawingRect);
+    private void setParameterToShadow() {
+
+        int colorTop =  ColorUtil.adjustAlpha(mZDepthParam.mAlphaTopShadow, mShadowColor);
+        int colorBottom =  ColorUtil.adjustAlpha(mZDepthParam.mAlphaBottomShadow,mShadowColor);
+        mShadow.setParameter(colorTop, colorBottom, mZDepthParam.mOffsetYTopShadowPx, mZDepthParam.mOffsetYBottomShadowPx, mZDepthParam.mBlurTopShadowPx, mZDepthParam.mBlurBottomShadowPx, mShadowDrawingRect);
     }
+
     public void changeZDepth(ZDepth zDepth) {
         zDepth.initZDepth(getContext());
         if (!mZDepthDoAnimation) {
@@ -277,22 +303,22 @@ public class ExactlyModel implements ShadowDelegate {
             return;
         }
 
-        PropertyValuesHolder alphaTopShadowHolder     = PropertyValuesHolder.ofInt(ANIM_PROPERTY_ALPHA_TOP_SHADOW,
+        PropertyValuesHolder alphaTopShadowHolder = PropertyValuesHolder.ofInt(ANIM_PROPERTY_ALPHA_TOP_SHADOW,
                 mZDepthParam.mAlphaTopShadow,
                 zDepth.mAlphaTopShadow);
-        PropertyValuesHolder alphaBottomShadowHolder  = PropertyValuesHolder.ofInt(ANIM_PROPERTY_ALPHA_BOTTOM_SHADOW,
+        PropertyValuesHolder alphaBottomShadowHolder = PropertyValuesHolder.ofInt(ANIM_PROPERTY_ALPHA_BOTTOM_SHADOW,
                 mZDepthParam.mAlphaBottomShadow,
                 zDepth.mAlphaBottomShadow);
-        PropertyValuesHolder offsetTopShadowHolder    = PropertyValuesHolder.ofFloat(ANIM_PROPERTY_OFFSET_TOP_SHADOW,
+        PropertyValuesHolder offsetTopShadowHolder = PropertyValuesHolder.ofFloat(ANIM_PROPERTY_OFFSET_TOP_SHADOW,
                 mZDepthParam.mOffsetYTopShadow,
                 zDepth.mOffsetYTopShadow);
         PropertyValuesHolder offsetBottomShadowHolder = PropertyValuesHolder.ofFloat(ANIM_PROPERTY_OFFSET_BOTTOM_SHADOW,
                 mZDepthParam.mOffsetYBottomShadow,
                 zDepth.mOffsetYBottomShadow);
-        PropertyValuesHolder blurTopShadowHolder      = PropertyValuesHolder.ofFloat(ANIM_PROPERTY_BLUR_TOP_SHADOW,
+        PropertyValuesHolder blurTopShadowHolder = PropertyValuesHolder.ofFloat(ANIM_PROPERTY_BLUR_TOP_SHADOW,
                 mZDepthParam.mBlurTopShadow,
                 zDepth.mBlurTopShadow);
-        PropertyValuesHolder blurBottomShadowHolder   = PropertyValuesHolder.ofFloat(ANIM_PROPERTY_BLUR_BOTTOM_SHADOW,
+        PropertyValuesHolder blurBottomShadowHolder = PropertyValuesHolder.ofFloat(ANIM_PROPERTY_BLUR_BOTTOM_SHADOW,
                 mZDepthParam.mBlurBottomShadow,
                 zDepth.mBlurBottomShadow);
         mZDepthParam = zDepth;
@@ -309,22 +335,22 @@ public class ExactlyModel implements ShadowDelegate {
         anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
-                int   alphaTopShadow     = (Integer) animation.getAnimatedValue(ANIM_PROPERTY_ALPHA_TOP_SHADOW);
-                int   alphaBottomShadow  = (Integer) animation.getAnimatedValue(ANIM_PROPERTY_ALPHA_BOTTOM_SHADOW);
-                float offsetTopShadow    = (Float) animation.getAnimatedValue(ANIM_PROPERTY_OFFSET_TOP_SHADOW);
+                int alphaTopShadow = (Integer) animation.getAnimatedValue(ANIM_PROPERTY_ALPHA_TOP_SHADOW);
+                int alphaBottomShadow = (Integer) animation.getAnimatedValue(ANIM_PROPERTY_ALPHA_BOTTOM_SHADOW);
+                float offsetTopShadow = (Float) animation.getAnimatedValue(ANIM_PROPERTY_OFFSET_TOP_SHADOW);
                 float offsetBottomShadow = (Float) animation.getAnimatedValue(ANIM_PROPERTY_OFFSET_BOTTOM_SHADOW);
-                float blurTopShadow      = (Float) animation.getAnimatedValue(ANIM_PROPERTY_BLUR_TOP_SHADOW);
-                float blurBottomShadow   = (Float) animation.getAnimatedValue(ANIM_PROPERTY_BLUR_BOTTOM_SHADOW);
+                float blurTopShadow = (Float) animation.getAnimatedValue(ANIM_PROPERTY_BLUR_TOP_SHADOW);
+                float blurBottomShadow = (Float) animation.getAnimatedValue(ANIM_PROPERTY_BLUR_BOTTOM_SHADOW);
 
 
-                int colorTop = Color.argb(alphaTopShadow, 0x44,0x44,0x44);
-                int colorBottom = Color.argb(alphaBottomShadow, 0x44,0x44,0x44);
+                int colorTop = ColorUtil.adjustAlpha(alphaTopShadow,mShadowColor);
+                int colorBottom = ColorUtil.adjustAlpha(alphaBottomShadow,mShadowColor);
 
-                mShadow.setParameter(colorTop,colorBottom,offsetTopShadow,offsetBottomShadow,blurTopShadow,blurBottomShadow,mShadowDrawingRect);
+                mShadow.setParameter(colorTop, colorBottom, offsetTopShadow, offsetBottomShadow, blurTopShadow, blurBottomShadow, mShadowDrawingRect);
 
                 mParent.invalidate();
-             }
-         });
+            }
+        });
         anim.start();
     }
 }

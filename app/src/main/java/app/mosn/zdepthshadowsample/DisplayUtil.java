@@ -1,4 +1,4 @@
-package com.gigamole.shadowlayout;
+package app.mosn.zdepthshadowsample;
 
 import android.content.Context;
 

@@ -1,4 +1,4 @@
-package com.gigamole.library.shadowdelegate;
+package com.ytjojo.shadowlayout.shadowdelegate;
 
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
@@ -10,11 +10,10 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.support.annotation.FloatRange;
-import android.util.Log;
 import android.view.View;
 
-import com.gigamole.library.R;
-import com.gigamole.library.ShadowLayout;
+import com.ytjojo.shadowlayout.R;
+import com.ytjojo.shadowlayout.ShadowLayout;
 
 /**
  * Created by Administrator on 2017/11/1 0001.
@@ -313,7 +312,6 @@ public class AutoModel implements ShadowDelegate {
         Matrix matrix = new Matrix();
         matrix.postScale(scale, scale);
         Bitmap mScaleBitmap = Bitmap.createBitmap(mBitmap, 0, 0, width, height, matrix, true);
-        Log.e("Shadowlayout",scale + "  dy "+ dy);
         return mScaleBitmap;
     }
 

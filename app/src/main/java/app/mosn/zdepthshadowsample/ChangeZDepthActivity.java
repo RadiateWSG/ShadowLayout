@@ -5,10 +5,10 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
-import com.gigamole.library.ShadowLayout;
-import com.gigamole.library.ZDepth;
-import com.gigamole.library.shadowdelegate.ExactlyModel;
-import com.gigamole.shadowlayout.R;
+import com.ytjojo.shadowlayout.ShadowLayout;
+import com.ytjojo.shadowlayout.ZDepth;
+import com.ytjojo.shadowlayout.shadowdelegate.ExactlyModel;
+import com.ytjojo.shadowlayout.demo.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

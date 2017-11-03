@@ -1,6 +1,7 @@
-package com.gigamole.library.shadowdelegate;
+package com.ytjojo.shadowlayout.shadowdelegate;
 
 import android.graphics.Canvas;
+import android.support.annotation.ColorInt;
 import android.view.View;
 
 /**
@@ -15,5 +16,6 @@ public interface ShadowDelegate {
     void onDraw(Canvas canvas) ;
     boolean onClipCanvas(Canvas canvas,View child);
     void invalidateShadow();
+    void setShadowColor(@ColorInt int color);
 
 }

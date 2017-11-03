@@ -10,10 +10,10 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <com.gigamole.library.ShadowLayout
+        <com.ytjojo.shadowlayout.ShadowLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            shadow:sl_shadow_model="shadowShap"
+            shadow:sl_shadow_model="shadowShape"
             shadow:z_depth="z_depth0"
             shadow:z_depth_shape="rect">
 
@@ -24,12 +24,12 @@
                 android:padding="16dp"
                 android:text="ZDepth 0" />
 
-        </com.gigamole.library.ShadowLayout>
+        </com.ytjojo.shadowlayout.ShadowLayout>
 
-        <com.gigamole.library.ShadowLayout
+        <com.ytjojo.shadowlayout.ShadowLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            shadow:sl_shadow_model="shadowShap"
+            shadow:sl_shadow_model="shadowShape"
             shadow:z_depth="z_depth1"
             shadow:z_depth_paddingLeft="z_depth0"
             shadow:z_depth_paddingRight="z_depth0"
@@ -42,12 +42,12 @@
                 android:padding="16dp"
                 android:text="ZDepth 1" />
 
-        </com.gigamole.library.ShadowLayout>
+        </com.ytjojo.shadowlayout.ShadowLayout>
 
-        <com.gigamole.library.ShadowLayout
+        <com.ytjojo.shadowlayout.ShadowLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            shadow:sl_shadow_model="shadowShap"
+            shadow:sl_shadow_model="shadowShape"
             shadow:z_depth="z_depth2"
             shadow:z_depth_shape="rect">
 
@@ -58,12 +58,12 @@
                 android:padding="16dp"
                 android:text="ZDepth 2" />
 
-        </com.gigamole.library.ShadowLayout>
+        </com.ytjojo.shadowlayout.ShadowLayout>
 
-        <com.gigamole.library.ShadowLayout
+        <com.ytjojo.shadowlayout.ShadowLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            shadow:sl_shadow_model="shadowShap"
+            shadow:sl_shadow_model="shadowShape"
             shadow:z_depth="z_depth3"
             shadow:z_depth_shape="rect">
 
@@ -74,12 +74,12 @@
                 android:padding="16dp"
                 android:text="ZDepth 3" />
 
-        </com.gigamole.library.ShadowLayout>
+        </com.ytjojo.shadowlayout.ShadowLayout>
 
-        <com.gigamole.library.ShadowLayout
+        <com.ytjojo.shadowlayout.ShadowLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            shadow:sl_shadow_model="shadowShap"
+            shadow:sl_shadow_model="shadowShape"
             shadow:z_depth="z_depth4"
             shadow:z_depth_shape="rect">
 
@@ -90,12 +90,12 @@
                 android:padding="16dp"
                 android:text="ZDepth 4" />
 
-        </com.gigamole.library.ShadowLayout>
+        </com.ytjojo.shadowlayout.ShadowLayout>
 
-        <com.gigamole.library.ShadowLayout
+        <com.ytjojo.shadowlayout.ShadowLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            shadow:sl_shadow_model="shadowShap"
+            shadow:sl_shadow_model="shadowShape"
             shadow:z_depth="z_depth5"
             shadow:z_depth_shape="rect">
 
@@ -105,11 +105,11 @@
                 android:background="@android:color/white"
                 android:padding="16dp"
                 android:text="ZDepth 5" />
-        </com.gigamole.library.ShadowLayout>
-        <com.gigamole.library.ShadowLayout
+        </com.ytjojo.shadowlayout.ShadowLayout>
+        <com.ytjojo.shadowlayout.ShadowLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            shadow:sl_shadow_model="shadowShap"
+            shadow:sl_shadow_model="shadowShape"
             shadow:z_depth="z_depth6"
             shadow:z_depth_shape="rect">
 
@@ -120,12 +120,12 @@
                 android:padding="16dp"
                 android:text="ZDepth 6" />
 
-        </com.gigamole.library.ShadowLayout>
+        </com.ytjojo.shadowlayout.ShadowLayout>
 
-        <com.gigamole.library.ShadowLayout
+        <com.ytjojo.shadowlayout.ShadowLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            shadow:sl_shadow_model="shadowShap"
+            shadow:sl_shadow_model="shadowShape"
             shadow:z_depth="z_depth0"
             shadow:z_depth_shape="oval">
 
@@ -137,12 +137,12 @@
                 android:padding="16dp"
                 android:text="+" />
 
-        </com.gigamole.library.ShadowLayout>
+        </com.ytjojo.shadowlayout.ShadowLayout>
 
-        <com.gigamole.library.ShadowLayout
+        <com.ytjojo.shadowlayout.ShadowLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            shadow:sl_shadow_model="shadowShap"
+            shadow:sl_shadow_model="shadowShape"
             shadow:z_depth="z_depth1"
             shadow:z_depth_shape="oval">
 
@@ -154,12 +154,12 @@
                 android:padding="16dp"
                 android:text="+" />
 
-        </com.gigamole.library.ShadowLayout>
+        </com.ytjojo.shadowlayout.ShadowLayout>
 
-        <com.gigamole.library.ShadowLayout
+        <com.ytjojo.shadowlayout.ShadowLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            shadow:sl_shadow_model="shadowShap"
+            shadow:sl_shadow_model="shadowShape"
             shadow:z_depth="z_depth2"
             shadow:z_depth_shape="oval">
 
@@ -171,12 +171,12 @@
                 android:padding="16dp"
                 android:text="+" />
 
-        </com.gigamole.library.ShadowLayout>
+        </com.ytjojo.shadowlayout.ShadowLayout>
 
-        <com.gigamole.library.ShadowLayout
+        <com.ytjojo.shadowlayout.ShadowLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            shadow:sl_shadow_model="shadowShap"
+            shadow:sl_shadow_model="shadowShape"
             shadow:z_depth="z_depth3"
             shadow:z_depth_shape="oval">
 
@@ -188,12 +188,12 @@
                 android:padding="16dp"
                 android:text="+" />
 
-        </com.gigamole.library.ShadowLayout>
+        </com.ytjojo.shadowlayout.ShadowLayout>
 
-        <com.gigamole.library.ShadowLayout
+        <com.ytjojo.shadowlayout.ShadowLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            shadow:sl_shadow_model="shadowShap"
+            shadow:sl_shadow_model="shadowShape"
             shadow:z_depth="z_depth4"
             shadow:z_depth_shape="oval">
 
@@ -205,12 +205,12 @@
                 android:padding="16dp"
                 android:text="+" />
 
-        </com.gigamole.library.ShadowLayout>
+        </com.ytjojo.shadowlayout.ShadowLayout>
 
-        <com.gigamole.library.ShadowLayout
+        <com.ytjojo.shadowlayout.ShadowLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            shadow:sl_shadow_model="shadowShap"
+            shadow:sl_shadow_model="shadowShape"
             shadow:z_depth="z_depth5"
             shadow:z_depth_shape="oval">
 
@@ -222,7 +222,7 @@
                 android:padding="16dp"
                 android:text="+" />
 
-        </com.gigamole.library.ShadowLayout>
+        </com.ytjojo.shadowlayout.ShadowLayout>
 
     </LinearLayout>
 

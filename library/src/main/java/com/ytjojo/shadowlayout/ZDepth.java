@@ -1,9 +1,9 @@
-package com.gigamole.library;
+package com.ytjojo.shadowlayout;
 
 import android.content.Context;
 import android.graphics.Color;
 
-import com.gigamole.library.utils.DisplayUtils;
+import com.ytjojo.shadowlayout.utils.DisplayUtils;
 
 
 public enum ZDepth {

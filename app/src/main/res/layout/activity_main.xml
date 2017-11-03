@@ -15,12 +15,12 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <com.gigamole.library.ShadowLayout
-
+        <com.ytjojo.shadowlayout.ShadowLayout
+            android:id="@+id/ovalShapeSl"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="visible"
-            app:sl_shadow_model="shadowShap"
+            app:sl_shadow_model="shadowShape"
             app:z_depth="z_depth3"
             app:z_depth_clipcanvas="true"
             app:z_depth_shape="oval">
@@ -30,7 +30,7 @@
                 android:layout_height="80dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/quila" />
-        </com.gigamole.library.ShadowLayout>
+        </com.ytjojo.shadowlayout.ShadowLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -38,12 +38,12 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <com.gigamole.library.ShadowLayout
+            <com.ytjojo.shadowlayout.ShadowLayout
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="visible"
-                app:sl_shadow_model="shadowShap"
+                app:sl_shadow_model="shadowShape"
                 app:sl_shadow_rectroundradius="8dp"
                 app:z_depth="z_depth2"
                 app:z_depth_clipcanvas="true"
@@ -56,13 +56,13 @@
                     android:background="#31B4E1"
                     android:padding="10dp"
                     android:text="SimpleZDepth" />
-            </com.gigamole.library.ShadowLayout>
+            </com.ytjojo.shadowlayout.ShadowLayout>
 
-            <com.gigamole.library.ShadowLayout
+            <com.ytjojo.shadowlayout.ShadowLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="visible"
-                app:sl_shadow_model="shadowShap"
+                app:sl_shadow_model="shadowShape"
                 app:sl_shadow_rectroundradius="8dp"
                 app:z_depth="z_depth1"
                 app:z_depth_clipcanvas="true"
@@ -75,10 +75,10 @@
                     android:background="#31B4E1"
                     android:padding="10dp"
                     android:text="Change ZDepth" />
-            </com.gigamole.library.ShadowLayout>
+            </com.ytjojo.shadowlayout.ShadowLayout>
         </LinearLayout>
 
-        <com.gigamole.library.ShadowLayout
+        <com.ytjojo.shadowlayout.ShadowLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="visible"
@@ -103,9 +103,9 @@
                 android:textSize="18sp"
                 android:typeface="sans" />
 
-        </com.gigamole.library.ShadowLayout>
+        </com.ytjojo.shadowlayout.ShadowLayout>
 
-        <com.gigamole.library.ShadowLayout
+        <com.ytjojo.shadowlayout.ShadowLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="visible"
@@ -236,9 +236,9 @@
 
                 </LinearLayout>
             </LinearLayout>
-        </com.gigamole.library.ShadowLayout>
+        </com.ytjojo.shadowlayout.ShadowLayout>
 
-        <com.gigamole.library.ShadowLayout
+        <com.ytjojo.shadowlayout.ShadowLayout
             android:id="@+id/sl_round"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -253,9 +253,9 @@
                 android:layout_width="200dp"
                 android:layout_height="100dp"
                 android:scaleType="centerInside" />
-        </com.gigamole.library.ShadowLayout>
+        </com.ytjojo.shadowlayout.ShadowLayout>
 
-        <com.gigamole.library.ShadowLayout
+        <com.ytjojo.shadowlayout.ShadowLayout
             android:id="@+id/sl_circle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -271,7 +271,7 @@
                 android:layout_gravity="center"
                 android:scaleType="centerCrop"
                 android:src="@mipmap/doctor_male_round" />
-        </com.gigamole.library.ShadowLayout>
+        </com.ytjojo.shadowlayout.ShadowLayout>
 
         <TextView
             android:id="@+id/tv_radius"

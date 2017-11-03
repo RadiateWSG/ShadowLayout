@@ -1,4 +1,4 @@
-package com.gigamole.library;
+package com.ytjojo.shadowlayout;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
