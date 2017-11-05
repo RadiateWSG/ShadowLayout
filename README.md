@@ -1,158 +1,293 @@
-<br/>
-<p align="center">
-  <a href="http://devlight.io">
-      <img src ="https://drive.google.com/uc?export=download&id=0BxPO_UeS7wScLVBKck51Z1Rzb0E" alt="Devlight"/>
-  </a>
-</p>
-<br/>
-
 ShadowLayout
-============
+==================
 
-This library allows you to create a shadow effect for your layout based on your child.
+Android - draw z-depth shadow of MaterialDesign
 
-[![Android Arsenal](https://drive.google.com/uc?export=download&id=0BxPO_UeS7wScd2otYkEydkdjNUk)](http://android-arsenal.com/details/1/3524)
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-[![Android](https://drive.google.com/uc?export=download&id=0BxPO_UeS7wSccEZaclNGN0R5OWc)](https://github.com/DevLight-Mobile-Agency)
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-[![Download](https://drive.google.com/uc?export=download&id=0BxPO_UeS7wScLXZTaGprRXZXeEU)](https://bintray.com/gigamole/maven/shadowlayout/_latestVersion)
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-[![License](https://drive.google.com/uc?export=download&id=0BxPO_UeS7wScU0tmeFpGMHVWNWs)](https://github.com/DevLight-Mobile-Agency/ShadowLayout/blob/master/LICENSE.txt)
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-[![Codacy](https://drive.google.com/uc?export=download&id=0BxPO_UeS7wScSHhmckZyeGJDcXc)](https://www.codacy.com/app/gigamole53/ShadowLayout?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=DevLight-Mobile-Agency/ShadowLayout&amp;utm_campaign=Badge_Grade)
+## Demo
 
-<br/>
+![ZDepthShadowLayout GIF](./blobs/ezgif.com-gif-maker.gif)
 
-<p align="center">
-    <img src="https://drive.google.com/uc?export=download&id=0BxPO_UeS7wScT3JXY2t5TzhkTDg"/>
-</p>
+## Screen Capture
 
-You can check the sample app [here](https://github.com/DevLight-Mobile-Agency/ShadowLayout/tree/master/app).
 
-Download
-========
 
-You can download a `.aar` from GitHub's [releases page](https://github.com/DevLight-Mobile-Agency/ShadowLayout/releases).
+![ZDepthShadowLayout GIF](./blobs/ezgif.com-video-to-gif_zdepth.gif)
 
-Or use Gradle jCenter:
+
+
+
+
+![ZDepthShadowLayout GIF](./blobs/Screenshot_20171105-175052.jpg)
+
+
+
+![ZDepthShadowLayout GIF](./blobs/Screenshot_20171104-170835.jpg)
+
+![ZDepthShadowLayout GIF](./blobs/Screenshot_20171104-170818.jpg)  
+
+
+
+
+
+
+
+![ZDepthShadowLayout GIF](./blobs/Screenshot_20171105-175326.jpg)
+
+
+
+
+
+![ZDepthShadowLayout GIF](./blobs/Screenshot_20171104-170938.jpg)
+
+## Download
 
 ```groovy
-dependencies {
-    repositories {
-        mavenCentral()
-        maven {
-            url  'http://dl.bintray.com/gigamole/maven/'
-        }
+apply plugin: 'com.android.application'
+
+repositories {
+    maven {
+        url "https://jitpack.io"
     }
-    compile 'com.github.devlight.shadowlayout:library:+'
+}
+
+android {
+    // something code...
+}
+
+dependencies {
+    compile 'com.github.ShogoMizumoto:ZDepthShadowLayout:1.0.4'
 }
 ```
 
-Or Gradle Maven Central:
+## How to Use
 
-```groovy
-compile 'com.github.devlight.shadowlayout:library:1.0.2'
-```
-
-Or Maven:
-
-```groovy
-<dependency>
-    <groupId>com.github.devlight.shadowlayout</groupId>
-    <artifactId>library</artifactId>
-    <version>1.0.2</version>
-    <type>aar</type>
-</dependency>
-```
-
-Android SDK Version
-===================
-
-`ShadowLayout` requires a minimum SDK version of 11. 
-
-Sample
-======
-
-<b>Parameters</b>
-
-For `ShadowLayout` you can set such parameters as:
- 
- - shadowed:  
-    allows you to handle shadow visibility.
-    
- - shadow distance:  
-    allows you to set distance of shadow.    
-
- - shadow angle:  
-    allows you to set shadow angle.
-    
- - shadow radius:  
-    allows you to set shadow radius.
-     
- - shadow color:  
-    allows you to set shadow color.
-    
-<b>Tips</b>
-
-Angle can only be positive and be in range from 0 to 360 degrees.  
-`ShadowLayout` automatically set padding for shadow space draw.
-
-<b>Init</b>
-
-Check out in code init:
-
-```java
-final ShadowLayout shadowLayout = (ShadowLayout) findViewById(R.id.sl);
-shadowLayout.setIsShadowed(true);
-shadowLayout.setShadowAngle(45);
-shadowLayout.setShadowRadius(20);
-shadowLayout.setShadowDistance(30);
-shadowLayout.setShadowColor(Color.DKGRAY);
-```
-            
-Other methods check out in sample.
-
-And XML init:
+ShapeModel
 
 ```xml
-<com.gigamole.library.ShadowLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:sl_shadowed="true"
-    app:sl_shadow_angle="45"
-    app:sl_shadow_radius="20dp"
-    app:sl_shadow_distance="30dp"
-    app:sl_shadow_color="#000">
-    
-    <!-- Set your child`s-->
-    
-</com.gigamole.library.ShadowLayout>
+ <com.ytjojo.shadowlayout.ShadowLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            shadow:sl_shadow_model="shadowShape"
+            shadow:z_depth="z_depth3"
+            shadow:z_depth_shape="rect">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                android:padding="16dp"
+                android:text="ZDepth 3" />
+
+</com.ytjojo.shadowlayout.ShadowLayout>
 ```
 
-Getting Help
-============
+Shapmodel clip
 
-To report a specific problem or feature request, [open a new issue on Github](https://github.com/DevLight-Mobile-Agency/ShadowLayout/issues/new).
+```xml
+<com.ytjojo.shadowlayout.ShadowLayout
+    android:id="@+id/ovalShapeSl"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:visibility="visible"
+    app:sl_shadow_model="shadowShape"
+    app:z_depth="z_depth3"
+    app:z_depth_clipcanvas="true"
+    app:z_depth_shape="oval">
 
-Author
-======
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/quila" />
+</com.ytjojo.shadowlayout.ShadowLayout>
+```
 
-Created by [Basil Miller](https://github.com/GIGAMOLE) - [@gigamole](mailto:gigamole53@gmail.com)
+autoModel
 
-Company
-=======
+```xml
+<com.ytjojo.shadowlayout.ShadowLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:sl_shadow_color="#83111111"
+    app:sl_shadow_offsetdx="0dp"
+    app:sl_shadow_offsetdy="5dp"
+    app:sl_shadow_radius="8dp"
+    app:sl_shadow_zoomdy="-1dp">
 
-[![Facebook](https://drive.google.com/uc?export=download&id=0BxPO_UeS7wScaGhGVFNKU0VxMnc)](https://www.facebook.com/devlightagency)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[![Twitter](https://drive.google.com/uc?export=download&id=0BxPO_UeS7wScZ1ExQWh5cHF5cVE)](https://twitter.com/DevLightIO)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[![LinkedIn](https://drive.google.com/uc?export=download&id=0BxPO_UeS7wSccGZINzEycE1nVFE)](https://www.linkedin.com/company/devlight)
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center"
+        android:scaleType="centerCrop"
+        android:src="@drawable/airbnb" />
+</com.ytjojo.shadowlayout.ShadowLayout>
+```
 
-[Here](https://github.com/DevLight-Mobile-Agency) you can see open source work developed by Devlight LLC.  
-This and another works is an exclusive property of Devlight LLC. 
+auto model  use angle
 
-If you want to use this library in applications which will be available on Google Play, please report us or author of the library about it.
+```xml
+<com.ytjojo.shadowlayout.ShadowLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:visibility="visible"
+    app:sl_shadow_angle="45"
+    app:sl_shadow_color="#9e000000"
+    app:sl_shadow_distance="4dp"
+    app:sl_shadow_radius="4dp">
 
-Whether you're searching for a new partner or trusted team for creating your new great product we are always ready to start work with you. 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="56dp"
+        android:layout_marginBottom="68dp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/ic_logo" />
 
-You can contact us: info@devlight.io or opensource@devlight.io.  
-Thanks in advance.
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:text="HOW WE WORK"
+        android:textColor="#414141"
+        android:textSize="18sp"
+        android:typeface="sans" />
 
-Devlight LLC, 2016  
-[devlight.io](http://devlight.io) 
+</com.ytjojo.shadowlayout.ShadowLayout>
+```
+
+![ZDepthShadowLayout GIF](./blobs/Screenshot_20171105-180713.jpg)
+
+
+
+PathModel
+
+```xml
+<com.ytjojo.shadowlayout.ShadowLayout
+    app:sl_shadow_model="shadowPath"
+    app:shadow_path_coordinatex1="0.3"
+    app:shadow_path_coordinatey1="0.9"
+    app:shadow_path_coordinatex2="0.7"
+    app:shadow_path_coordinatey2="0.9"
+    app:shadow_path_startleft_y_rate="0.7"
+    app:shadow_path_endright_y_rate="0.7"
+    app:sl_shadow_offsetdy="1dp"
+    android:layout_width="match_parent"
+    android:layout_height="200dp">
+    <ImageView
+        android:src="@drawable/fengjing"
+        android:scaleType="centerCrop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</com.ytjojo.shadowlayout.ShadowLayout>
+```
+
+
+
+you can custom path
+
+```java
+PathModel pathModel= (PathModel) shadowLayout.getShadowDeltegate();
+pathModel.setPath(mCustomPath);
+```
+
+
+
+### Attribute
+
+
+
+#### attrs.xml
+
+```xml
+<declare-styleable name="ShadowLayout">
+        <attr name="sl_shadowed" format="boolean"/>
+        <attr name="sl_shadow_distance" format="dimension"/>
+        <attr name="sl_shadow_offsetdx" format="dimension"/>
+        <attr name="sl_shadow_offsetdy" format="dimension"/>
+        <attr name="sl_shadow_zoomdy" format="dimension"/>
+        <attr name="sl_shadow_angle" format="integer"/>
+        <attr name="shadow_path_startleft_y_rate" format="float"/>
+        <attr name="shadow_path_endright_y_rate" format="float"/>
+        <attr name="shadow_path_coordinatex1" format="float"/>
+        <attr name="shadow_path_coordinatey1" format="float"/>
+        <attr name="shadow_path_coordinatex2" format="float"/>
+        <attr name="shadow_path_coordinatey2" format="float"/>
+        <attr name="z_depth_clipcanvas" format="boolean"/>
+        <attr name="sl_shadow_radius" format="dimension"/>
+        <attr name="sl_shadow_rectroundradius" format="dimension"/>
+        <attr name="sl_shadow_color" format="color"/>
+        <attr name="sl_shadow_model" format="enum">
+            <enum name="auto" value="0"/>
+            <enum name="shadowShape" value="1"/>
+            <enum name="shadowPath" value="2"/>
+        </attr>
+        <attr name="z_depth" format="enum">
+            <enum name="z_depth0" value="0"/>
+            <enum name="z_depth1" value="1"/>
+            <enum name="z_depth2" value="2"/>
+            <enum name="z_depth3" value="3"/>
+            <enum name="z_depth4" value="4"/>
+            <enum name="z_depth5" value="5"/>
+            <enum name="z_depth6" value="6"/>
+        </attr>
+        <attr name="z_depth_shape" format="enum">
+            <enum name="rect" value="0"/>
+            <enum name="oval" value="1"/>
+        </attr>
+        <attr name="z_depth_padding" format="enum">
+            <enum name="z_depth0" value="0"/>
+            <enum name="z_depth1" value="1"/>
+            <enum name="z_depth2" value="2"/>
+            <enum name="z_depth3" value="3"/>
+            <enum name="z_depth4" value="4"/>
+            <enum name="z_depth5" value="5"/>
+        </attr>
+        <attr name="z_depth_paddingLeft" format="enum">
+            <enum name="z_depth0" value="0"/>
+            <enum name="z_depth1" value="1"/>
+            <enum name="z_depth2" value="2"/>
+            <enum name="z_depth3" value="3"/>
+            <enum name="z_depth4" value="4"/>
+            <enum name="z_depth5" value="5"/>
+        </attr>
+        <attr name="z_depth_paddingTop" format="enum">
+            <enum name="z_depth0" value="0"/>
+            <enum name="z_depth1" value="1"/>
+            <enum name="z_depth2" value="2"/>
+            <enum name="z_depth3" value="3"/>
+            <enum name="z_depth4" value="4"/>
+            <enum name="z_depth5" value="5"/>
+        </attr>
+        <attr name="z_depth_paddingRight" format="enum">
+            <enum name="z_depth0" value="0"/>
+            <enum name="z_depth1" value="1"/>
+            <enum name="z_depth2" value="2"/>
+            <enum name="z_depth3" value="3"/>
+            <enum name="z_depth4" value="4"/>
+            <enum name="z_depth5" value="5"/>
+        </attr>
+        <attr name="z_depth_paddingBottom" format="enum">
+            <enum name="z_depth0" value="0"/>
+            <enum name="z_depth1" value="1"/>
+            <enum name="z_depth2" value="2"/>
+            <enum name="z_depth3" value="3"/>
+            <enum name="z_depth4" value="4"/>
+            <enum name="z_depth5" value="5"/>
+        </attr>
+        <attr name="z_depth_animDuration" format="integer"/>
+        <attr name="z_depth_doAnim" format="boolean"/>
+    </declare-styleable>
+```
+
+## What is ZDepth?
+
+![ZDepthShadowLayout GIF](./blobs/shadow_zdepth.png)
+
+#### Example : z-depth 5
+
+![ZDepthShadowLayout GIF](./blobs/zdepthshadow_zdepth_5.png)
+
+
+
+
+
+
