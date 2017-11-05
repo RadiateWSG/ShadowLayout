@@ -14,6 +14,7 @@
         <attr name="shadow_path_coordinatey1" format="float"/>
         <attr name="shadow_path_coordinatex2" format="float"/>
         <attr name="shadow_path_coordinatey2" format="float"/>
+        <attr name="z_depth_clipcanvas" format="boolean"/>
         <attr name="sl_shadow_radius" format="dimension"/>
         <attr name="sl_shadow_rectroundradius" format="dimension"/>
         <attr name="sl_shadow_color" format="color"/>
@@ -77,6 +78,5 @@
         </attr>
         <attr name="z_depth_animDuration" format="integer"/>
         <attr name="z_depth_doAnim" format="boolean"/>
-        <attr name="z_depth_clipcanvas" format="boolean"/>
     </declare-styleable>
 </resources>
