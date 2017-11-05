@@ -10,6 +10,7 @@ import android.widget.FrameLayout;
 
 import com.ytjojo.shadowlayout.shadowdelegate.AutoModel;
 import com.ytjojo.shadowlayout.shadowdelegate.ExactlyModel;
+import com.ytjojo.shadowlayout.shadowdelegate.PathModel;
 import com.ytjojo.shadowlayout.shadowdelegate.ShadowDelegate;
 
 /**
@@ -41,6 +42,8 @@ public class ShadowLayout extends FrameLayout {
             mShadowDeltegate = new AutoModel(this, typedArray);
         } else if (model == SHADOW_MODEL_SHAP) {
             mShadowDeltegate = new ExactlyModel(this, typedArray);
+        }else if(model == SHADOW_MODEL_PATH){
+            mShadowDeltegate = new PathModel(this,typedArray);
         }
         typedArray.recycle();
     }
@@ -67,7 +70,7 @@ public class ShadowLayout extends FrameLayout {
     @Override
     protected void dispatchDraw(Canvas canvas) {
         mShadowDeltegate.onDraw(canvas);
-
+        mShadowDeltegate.onDrawOver(canvas);
     }
 
     @Override

@@ -14,6 +14,7 @@ public interface ShadowDelegate {
     void onAttachToWindow();
     void onDetachedFromWindow();
     void onDraw(Canvas canvas) ;
+    void onDrawOver(Canvas canvas) ;
     boolean onClipCanvas(Canvas canvas,View child);
     void invalidateShadow();
     void setShadowColor(@ColorInt int color);

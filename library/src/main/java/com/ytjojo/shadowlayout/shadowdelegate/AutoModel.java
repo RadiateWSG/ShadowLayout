@@ -281,6 +281,11 @@ public class AutoModel implements ShadowDelegate {
     }
 
     @Override
+    public void onDrawOver(Canvas canvas) {
+
+    }
+
+    @Override
     public boolean onClipCanvas(Canvas canvas,View child) {
         return false;
     }

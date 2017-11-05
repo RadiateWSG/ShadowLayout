@@ -30,7 +30,7 @@ public class ExactlyModel implements ShadowDelegate {
     protected static final int DEFAULT_ATTR_ZDEPTH_PADDING = 5;
     protected static final int DEFAULT_ATTR_ZDEPTH_ANIM_DURATION = 150;
     protected static final boolean DEFAULT_ATTR_ZDEPTH_DO_ANIMATION = true;
-    private final static int DEFAULT_SHADOW_COLOR = 0xFF333333;
+    private final static int DEFAULT_SHADOW_COLOR = 0xFF222222;
 
     protected static final int SHAPE_RECT = 0;
     protected static final int SHAPE_OVAL = 1;
@@ -215,12 +215,25 @@ public class ExactlyModel implements ShadowDelegate {
     Rect mShadowDrawingRect = new Rect();
 
     public void onLayout(boolean changed, int left, int top, int right, int bottom) {
-        int parentWidth = (right - left);
-        int parentHeight = (bottom - top);
-        mShadowDrawingRect.set(mZDepthPaddingLeft,
-                mZDepthPaddingTop,
-                parentWidth - mZDepthPaddingRight,
-                parentHeight - mZDepthPaddingBottom);
+//        int parentWidth = (right - left);
+//        int parentHeight = (bottom - top);
+//        mShadowDrawingRect.set(mZDepthPaddingLeft,
+//                mZDepthPaddingTop,
+//                parentWidth - mZDepthPaddingRight,
+//                parentHeight - mZDepthPaddingBottom);
+
+        mShadowDrawingRect.setEmpty();
+        if(mParent.getChildCount()>0){
+            int childCount = mParent.getChildCount();
+            for(int i=0;i<childCount ;i++){
+                View child = mParent.getChildAt(i);
+                if(i==0){
+                    mShadowDrawingRect.set(child.getLeft(),child.getTop(),child.getRight(),child.getBottom());
+                }else {
+                    mShadowDrawingRect.union(child.getLeft(),child.getTop(),child.getRight(),child.getBottom());
+                }
+            }
+        }
         setParameterToShadow();
         mShadow.onLayout(mParent, left, top, right, bottom);
     }
@@ -244,6 +257,11 @@ public class ExactlyModel implements ShadowDelegate {
         mShadow.onDraw(canvas);
         mParent.superdispatchDraw(canvas);
 
+    }
+
+    @Override
+    public void onDrawOver(Canvas canvas) {
+        mShadow.onDrawOver(canvas);
     }
 
     @Override

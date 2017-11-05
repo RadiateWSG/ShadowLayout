@@ -8,6 +8,12 @@
         <attr name="sl_shadow_offsetdy" format="dimension"/>
         <attr name="sl_shadow_zoomdy" format="dimension"/>
         <attr name="sl_shadow_angle" format="integer"/>
+        <attr name="shadow_path_startleft_y_rate" format="float"/>
+        <attr name="shadow_path_endright_y_rate" format="float"/>
+        <attr name="shadow_path_coordinatex1" format="float"/>
+        <attr name="shadow_path_coordinatey1" format="float"/>
+        <attr name="shadow_path_coordinatex2" format="float"/>
+        <attr name="shadow_path_coordinatey2" format="float"/>
         <attr name="sl_shadow_radius" format="dimension"/>
         <attr name="sl_shadow_rectroundradius" format="dimension"/>
         <attr name="sl_shadow_color" format="color"/>

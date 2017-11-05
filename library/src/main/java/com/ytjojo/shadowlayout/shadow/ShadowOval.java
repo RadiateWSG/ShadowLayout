@@ -9,6 +9,7 @@ import android.graphics.Region;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.view.View;
+import android.view.ViewGroup;
 
 
 public class ShadowOval implements Shadow {
@@ -66,6 +67,11 @@ public class ShadowOval implements Shadow {
     }
 
     @Override
+    public void onDrawOver(Canvas canvas) {
+
+    }
+
+    @Override
     public boolean onClipChildCanvas(Canvas canvas,View child) {
         mPath.reset();
         int width = Math.min(child.getHeight(),child.getWidth());
@@ -78,7 +84,7 @@ public class ShadowOval implements Shadow {
 
     @Override
     public void onLayout(View parent, int left, int top, int right, int bottom) {
-        mClipRect.set(parent.getPaddingLeft(),parent.getHeight()-parent.getPaddingBottom(),parent.getWidth()-parent.getPaddingRight(),parent.getHeight());
+        ViewGroup viewGroup = (ViewGroup) parent;
 
         mPath.addRoundRect(mClipRect,mClipRect.width(),mClipRect.width(),Path.Direction.CW);
     }

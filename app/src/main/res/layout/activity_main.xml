@@ -65,7 +65,7 @@
                 android:visibility="visible"
                 app:sl_shadow_model="shadowShape"
                 app:sl_shadow_rectroundradius="8dp"
-                app:z_depth="z_depth1"
+                app:z_depth="z_depth3"
                 app:z_depth_padding="z_depth2"
                 app:z_depth_clipcanvas="true"
                 app:z_depth_shape="rect">

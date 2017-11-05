@@ -12,6 +12,7 @@ public interface Shadow {
                              Rect rect);
 
     public void onDraw(Canvas canvas);
+    public void onDrawOver(Canvas canvas);
     boolean onClipChildCanvas(Canvas canvas,View child);
     void onLayout(View parent,int left,int top,int right,int bottom);
 }

@@ -1,3 +1,58 @@
 <resources>
     <string name="app_name">ShadowLayout</string>
+    <string name="long_text">
+        Speaking at conferences is an investment of speakers in time, energy, and knowledge. The quality of a presentation and of the conference itself can be measured in the amount of investment made.
+
+Here are my tips for future conference speakers.
+
+Choosing A Conference
+
+At which conference you choose to speak is arguably as important as the topic selection and the amount of work put into the presentation. There are very obvious factors that everyone should consider such as the overall theme, audience that will be attending, and overall conference size.
+
+A conference of 200 people on a specific topic in a remote region deserves a very different preparation than one of 2000 people on a general topic in a large tech hub. The smaller of these two would require something very detailed on which you consider yourself an expert because the people in attendance will expect it. At the larger one you can still give the same detailed talk, but you also have the option of being more broad, appealing more to introductory learners, and not having to be an absolute authority on the subject.
+
+Beyond those, there are other very important factors that I consider essential criteria when selecting where to speak.
+
+Recording
+
+Unless you are going to give the same presentation over and over again (and some do this, refining it over time), having your talk recorded means you instantly increase the size of your potential audience by 1000x. Not only does this force you to know what you are talking about and make pretty slides, but it helps justify the amount of work required to prepare.
+
+Rather than having only static images to refer to or your sweet (cough) prezi, those wishing to review your presentation can do so directly from you in addition to the static version (see ‘Publishing’ below).
+
+Some conferences will really go above and beyond in recording. Devoxx not only uses professional recording equipment with manned cameras, but they also publish their talks on parleys.com which features slides that are synchronized with the video. You can watch my talk from last year on Dagger for an example.
+
+Venue
+
+With the amount of time it takes to prepare a presentation, you want it to be seen and heard by as many as possible. A bad venue can really turn an otherwise interesting set of speakers into a painful experience. Not being able to see or hear in a room is bad, but having to turn away tons of people due to poor planning or room size is even worse.
+
+Beyond the physical, the technical facilities of a conference are of great importance. The size, placement, and resolution of the screen ensures that your content will be legible to all in the room. At this point it is inexcusable to have anything other than a widescreen, high-definition projector. Screen size should simply be as large as possible. For a presentation of anything over 20 or 30 a speaker and mic setup is essential. The size of the room should dictate how large the speaker setup needs to be.
+
+
+
+This is another Devoxx slam-dunk as it is hosted inside a movie theater with stadium seating (pictured). Presenters wear tiny mics and stand beneath an absolutely massive screen onto which both your slides and a real-time video feed is shown. As both an attendee and presenter it’s a fantastic experience.
+
+Organizers
+
+The people behind the conference is an interesting factor to guage a conference by but it turns out to be an important one. Some conferences are run by companies who have motives beyond the conference content itself. All conferences will have sponsors and may even be run by people who work for a single company. The difference is the companies for which running conferences is part of their job. By doing this, their motivation for recording talks, finding the best venues, and having the best equipment is greatly diminished by ulterior motives.
+
+A conference that is run by a company is likely still a good conference to attend and will attract good speakers. It’s just a choice you have to make as to whether you want to support something like that. There is a well-known Android conference in San Francisco that I would love to see destroyed by a Droidcon SF since they are guilty of not doing the things listed above.
+
+Creating Your Slides
+
+There are tons of articles on how to create effective slides. Slides should normally exist to augment and re-enforce you. Granted, some things like screenshots and code snippets are invaluable, and invert the roles allowing you to augment them. I’m not going re-iterate the well-known things and instead focus on what’s applicable for technical talks.
+
+Getting Started
+
+There’s a variety of tools to choose from for creating slides, choose the one that best suits the job. Google Slides is fantastic for collaborating on content, Keynote has a fantastic balance of simplicity and power, and Javascript-based tools allow fantastic interactivity. There’s also PowerPoint, but I’m not a Windows user. All will work, choose the one which will make you the most productive and I’ll leave it to other articles to compare.
+
+Slides should be done in widescreen (16:9) at 1080p (1920x1080) resolution. Hopefully this will be the native resolution at which they will be played (as discussed above), but at worst they will be downscaled which is always better than having them upscaled.
+
+Never start a presentation with a description of who you are, what you do, and the outline of your slides. This is content for the abstract of your talk that most people will have read and used in choosing to attend. Those who didn’t read this information don’t need it because they chose your talk for its catchy title or something and thus won’t care either way.
+
+Text Bullets
+
+Good ‘ol bullets of text. The fundamental building block of a presentation. Some people can get away with using only single words, short phrases, and pretty images but rarely does that fly for a technical talk.
+
+There is no “too large” for font size of your text. Better to err on the side of large than too small. A single slide should only be able to fit 6 single-line bullets of text. What you think is readable when sitting two feet from your 23” monitor might not be readable at full scale. Start your slideshow and stand back 6 to 10 feet (depending on monitor size) and ensure that everything is readable.
+    </string>
 </resources>

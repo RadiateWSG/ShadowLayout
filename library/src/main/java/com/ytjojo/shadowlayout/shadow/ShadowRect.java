@@ -83,6 +83,11 @@ public class ShadowRect implements Shadow {
     }
 
     @Override
+    public void onDrawOver(Canvas canvas) {
+
+    }
+
+    @Override
     public boolean onClipChildCanvas(Canvas canvas, View child) {
         if (mRoundRectRadius <= 0) {
             return false;

@@ -20,6 +20,7 @@
         <activity android:name="app.mosn.zdepthshadowsample.SimpleZDepthActivity"/>
         <activity android:name="app.mosn.zdepthshadowsample.SimpleAutoActivity"/>
         <activity android:name="app.mosn.zdepthshadowsample.SimpleAngleAutoActivity"/>
+        <activity android:name="app.mosn.zdepthshadowsample.SimplePathShadowActivity"/>
     </application>
 
 </manifest>

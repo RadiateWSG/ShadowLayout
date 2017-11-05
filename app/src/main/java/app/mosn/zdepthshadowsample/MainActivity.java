@@ -282,5 +282,10 @@ public class MainActivity extends Activity  {
         });
     }
 
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Intent intent = new Intent(this,SimplePathShadowActivity.class);
+        startActivity(intent);
+    }
 }

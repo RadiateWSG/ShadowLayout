@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_marginTop="180dp"
+        android:text="@string/long_text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+   <com.ytjojo.shadowlayout.ShadowLayout
+       app:sl_shadow_model="shadowPath"
+       app:shadow_path_coordinatex1="0.1"
+       app:shadow_path_coordinatey1="1"
+       app:shadow_path_coordinatex2="0.9"
+       app:shadow_path_coordinatey2="1"
+       app:shadow_path_startleft_y_rate="0.7"
+       app:shadow_path_endright_y_rate="0.7"
+       android:layout_width="match_parent"
+       android:layout_height="200dp">
+       <ImageView
+           android:src="@drawable/fengjing"
+           android:scaleType="centerCrop"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content" />
+   </com.ytjojo.shadowlayout.ShadowLayout>
+
+
+</FrameLayout>
