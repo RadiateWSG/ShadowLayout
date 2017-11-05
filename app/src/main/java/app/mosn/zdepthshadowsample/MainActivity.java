@@ -282,9 +282,8 @@ public class MainActivity extends Activity  {
         });
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
+    @OnClick(R.id.tv_pathModel)
+    protected void goSimplePathShadowActivity() {
         Intent intent = new Intent(this,SimplePathShadowActivity.class);
         startActivity(intent);
     }

@@ -79,6 +79,12 @@
                     android:text="Change ZDepth" />
             </com.ytjojo.shadowlayout.ShadowLayout>
         </LinearLayout>
+        <TextView
+            android:id="@+id/tv_pathModel"
+            android:text="pathModel"
+            android:padding="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
         <com.ytjojo.shadowlayout.ShadowLayout
             android:id="@+id/sl_goAngleActivity"

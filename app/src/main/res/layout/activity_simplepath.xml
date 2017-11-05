@@ -6,18 +6,19 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:layout_marginTop="180dp"
+        android:layout_marginTop="160dp"
         android:text="@string/long_text"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
    <com.ytjojo.shadowlayout.ShadowLayout
        app:sl_shadow_model="shadowPath"
-       app:shadow_path_coordinatex1="0.1"
-       app:shadow_path_coordinatey1="1"
-       app:shadow_path_coordinatex2="0.9"
-       app:shadow_path_coordinatey2="1"
+       app:shadow_path_coordinatex1="0.3"
+       app:shadow_path_coordinatey1="0.9"
+       app:shadow_path_coordinatex2="0.7"
+       app:shadow_path_coordinatey2="0.9"
        app:shadow_path_startleft_y_rate="0.7"
        app:shadow_path_endright_y_rate="0.7"
+       app:sl_shadow_offsetdy="1dp"
        android:layout_width="match_parent"
        android:layout_height="200dp">
        <ImageView

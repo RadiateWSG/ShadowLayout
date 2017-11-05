@@ -62,12 +62,10 @@ public class PathModel implements ShadowDelegate {
                         R.styleable.ShadowLayout_sl_shadow_color, Color.BLACK
                 )
         );
-        mShadowRadius = typedArray.getDimension(
-                R.styleable.ShadowLayout_sl_shadow_radius, 20);
 
         setShadowRadius(
                 typedArray.getDimension(
-                        R.styleable.ShadowLayout_sl_shadow_radius, 15
+                        R.styleable.ShadowLayout_sl_shadow_radius, 25
                 )
         );
         mOffsetDx = typedArray.getDimensionPixelSize(
@@ -106,8 +104,6 @@ public class PathModel implements ShadowDelegate {
         mShadowpath.offset(mOffsetDx, mOffsetDy);
         canvas.drawPath(mShadowpath, mPaint);
         canvas.restore();
-        mPaint.setColor(Color.RED);
-        canvas.drawPath(mClipPath,mPaint);
 
     }
 
