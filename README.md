@@ -3,6 +3,15 @@ ShadowLayout
 
 Android  powerful library- draw any shape of z-depth shadow of MaterialDesign,auto fit shape ,roundRect , Circle, clipe Path shape all be supportted
 
+
+## Thanks
+
+sho5nn
+https://github.com/sho5nn/ZDepthShadow
+
+Devlight
+https://github.com/Devlight/ShadowLayout
+
 ## Demo
 
 ![ZDepthShadowLayout GIF](./blobs/ezgif.com-gif-maker.gif)
@@ -45,9 +54,8 @@ Android  powerful library- draw any shape of z-depth shadow of MaterialDesign,au
 apply plugin: 'com.android.application'
 
 repositories {
-    maven {
-        url "https://jitpack.io"
-    }
+    jcenter()
+    mavenCentral()
 }
 
 android {
@@ -55,7 +63,7 @@ android {
 }
 
 dependencies {
-    compile 'com.github.ShogoMizumoto:ZDepthShadowLayout:1.0.4'
+    compile 'com.github.ytjojo:ShadowLayout:1.0.0'
 }
 ```
 
