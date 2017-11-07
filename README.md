@@ -1,7 +1,7 @@
 ShadowLayout
 ==================
 
-Android - draw z-depth shadow of MaterialDesign
+Android  powerful library- draw any shape of z-depth shadow of MaterialDesign,auto fit shape ,roundRect , Circle, clipe Path shape all be supportted
 
 ## Demo
 
