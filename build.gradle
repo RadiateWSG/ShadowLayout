@@ -1,5 +1,5 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-
+apply plugin: 'java'
 buildscript {
     repositories {
         jcenter()
@@ -49,4 +49,19 @@ allprojects {
         }
 
     }
+    tasks.withType(JavaCompile){
+        options.encoding = "UTF-8"
+        sourceCompatibility = org.gradle.api.JavaVersion.VERSION_1_8
+        targetCompatibility = org.gradle.api.JavaVersion.VERSION_1_8
+    }
+    tasks.withType(Javadoc) {
+        options.encoding = 'UTF-8'
+    }
 }
+clean {
+    delete rootProject.buildDir
+}
+task customClean(type: Delete) {
+    delete rootProject.buildDir
+}
+clean.dependsOn customClean

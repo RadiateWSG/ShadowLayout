@@ -43,3 +43,12 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.3.1'
 }
 
+tasks.withType(Javadoc) {
+    options.encoding = 'UTF-8'
+    options.addStringOption('charSet', 'UTF-8')
+    options.addStringOption('Xdoclint:none', '-quiet')
+}
+afterEvaluate{
+    tasks.getByName('androidJavadocs').enabled = false
+}
+
