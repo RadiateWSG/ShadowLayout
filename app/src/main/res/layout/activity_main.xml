@@ -14,23 +14,38 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical">
-
-        <com.ytjojo.shadowlayout.ShadowLayout
-            android:id="@+id/ovalShapeSl"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="visible"
-            app:sl_shadow_model="shadowShape"
-            app:z_depth="z_depth3"
-            app:z_depth_clipcanvas="true"
-            app:z_depth_shape="oval">
-
+        <LinearLayout
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
             <ImageView
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/quila" />
-        </com.ytjojo.shadowlayout.ShadowLayout>
+            <TextView
+                android:text="same picture"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <com.ytjojo.shadowlayout.ShadowLayout
+                android:id="@+id/ovalShapeSl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:sl_shadow_model="shadowShape"
+                app:z_depth="z_depth3"
+                app:z_depth_clipcanvas="true"
+                app:z_depth_shape="oval">
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/quila" />
+            </com.ytjojo.shadowlayout.ShadowLayout>
+        </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -83,6 +98,8 @@
             android:id="@+id/tv_pathModel"
             android:text="pathModel"
             android:padding="5dp"
+            android:background="@android:color/holo_green_light"
+            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
