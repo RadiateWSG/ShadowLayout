@@ -63,7 +63,7 @@ android {
 }
 
 dependencies {
-    compile 'com.github.ytjojo:ShadowLayout:1.0.0'
+    compile 'com.github.ytjojo:ShadowLayout:1.0.1'
 }
 ```
 
