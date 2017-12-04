@@ -222,28 +222,6 @@
                     android:layout_height="wrap_content"
                     android:text="ZDepth 5" />
             </com.ytjojo.shadowlayout.ShadowLayout>
-            <com.ytjojo.shadowlayout.ShadowLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toLeftOf="@+id/view_dummy"
-                shadow:sl_shadow_model="shadowShape"
-                shadow:sl_shadow_rectroundradius="17dp"
-                shadow:z_depth="z_depth6"
-                shadow:z_depth_padding="z_depth5"
-                shadow:z_depth_clipcanvas="true"
-                shadow:z_depth_shape="rect">
-
-                <TextView
-                    android:padding="8dp"
-                    android:background="#4D9CDF"
-                    android:id="@+id/button_zDepth_6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ZDepth 6" />
-            </com.ytjojo.shadowlayout.ShadowLayout>
-
-
         </LinearLayout>
 
 

@@ -89,10 +89,4 @@ public class ChangeZDepthActivity extends AppCompatActivity {
         mExactlyModelToobar.changeZDepth(ZDepth.Depth5);
     }
 
-    @OnClick(R.id.button_zDepth_6)
-    protected void onClickZDepth6() {
-        mExactlyModelLayoutRect.changeZDepth(ZDepth.Depth6);
-        mExactlyModelLayoutOval.changeZDepth(ZDepth.Depth6);
-        mExactlyModelToobar.changeZDepth(ZDepth.Depth6);
-    }
 }

@@ -235,7 +235,6 @@ pathModel.setPath(mCustomPath);
             <enum name="z_depth3" value="3"/>
             <enum name="z_depth4" value="4"/>
             <enum name="z_depth5" value="5"/>
-            <enum name="z_depth6" value="6"/>
         </attr>
         <attr name="z_depth_shape" format="enum">
             <enum name="rect" value="0"/>

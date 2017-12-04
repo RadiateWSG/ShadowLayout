@@ -205,8 +205,6 @@ public class ExactlyModel implements ShadowDelegate {
                 return ZDepth.Depth4;
             case 5:
                 return ZDepth.Depth5;
-            case 6:
-                return ZDepth.Depth6;
             default:
                 throw new IllegalArgumentException("unknown zDepth value.");
         }
