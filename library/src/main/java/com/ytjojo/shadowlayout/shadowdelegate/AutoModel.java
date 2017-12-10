@@ -7,6 +7,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.support.annotation.FloatRange;
@@ -287,8 +288,17 @@ public class AutoModel implements ShadowDelegate {
 
     @Override
     public boolean onClipCanvas(Canvas canvas,View child) {
+        if(mClipPath !=null && !mClipPath.isEmpty()){
+            canvas.clipPath(mClipPath);
+        }
         return false;
     }
+    Path mClipPath;
+    public void setClipPath(Path clipPath){
+        mClipPath = clipPath;
+        invalidateShadow();
+    }
+
 
     public void setZoomDy(float dy){
         mInvalidateShadow = true;
