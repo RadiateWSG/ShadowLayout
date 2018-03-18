@@ -12,6 +12,9 @@ https://github.com/sho5nn/ZDepthShadow
 Devlight
 https://github.com/Devlight/ShadowLayout
 
+##中文原理分析
+[中文原理分析](强大的剪裁+阴影效果布局ShadowLayout.md)
+
 ## Demo
 
 ![ZDepthShadowLayout GIF](./blobs/ezgif.com-gif-maker.gif)
