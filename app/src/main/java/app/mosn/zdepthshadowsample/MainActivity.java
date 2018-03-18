@@ -287,4 +287,9 @@ public class MainActivity extends Activity  {
         Intent intent = new Intent(this,SimplePathShadowActivity.class);
         startActivity(intent);
     }
+    @OnClick(R.id.tv_blurmaskfilterView)
+    protected void goBlurMaskFilterActivity() {
+        Intent intent = new Intent(this,BlurMaskFilterActivity.class);
+        startActivity(intent);
+    }
 }

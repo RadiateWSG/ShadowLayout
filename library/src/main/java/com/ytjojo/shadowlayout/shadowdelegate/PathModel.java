@@ -111,6 +111,9 @@ public class PathModel implements ShadowDelegate {
     public boolean onClipCanvas(Canvas canvas, View child) {
 
         canvas.clipPath(mClipPath);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            child.invalidateOutline();
+        }
         return false;
     }
 

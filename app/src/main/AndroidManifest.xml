@@ -21,6 +21,7 @@
         <activity android:name="app.mosn.zdepthshadowsample.SimpleAutoActivity"/>
         <activity android:name="app.mosn.zdepthshadowsample.SimpleAngleAutoActivity"/>
         <activity android:name="app.mosn.zdepthshadowsample.SimplePathShadowActivity"/>
+        <activity android:name="app.mosn.zdepthshadowsample.BlurMaskFilterActivity"/>
     </application>
 
 </manifest>
